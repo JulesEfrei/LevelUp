@@ -16,7 +16,7 @@ export default function CommingSoon() {
             </View>
 
             <View style={styles.subContainer}>
-                <Title size="xl" content="Comming Soon..." style={styles.title}/> //Il faut passer style en props sur le composant
+                <Title size="xl" content="Comming Soon..." style={styles.title}/>
                 <Illustration name="inProgress" />
             </View>
 
@@ -45,8 +45,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     title: {
-        width: "50%",
-        marginTop: 20,
-        color: "red"
+        width: 300,
+        marginBottom: 30,
     }
 })
