@@ -1,5 +1,7 @@
 import { Image, StyleSheet } from 'react-native'
 
+import images from "../../../assets/index"
+
 export default function Logo({size}) {
 
     return (
@@ -8,7 +10,7 @@ export default function Logo({size}) {
 
         <Image
           style={size == "sm" ? styles.sm : styles.xl}
-          source={require("../../../assets/logo.png")}
+          source={images["logo"]}
         />
 
         </>
