@@ -11,9 +11,12 @@ import EntypoI from 'react-native-vector-icons/Entypo'
 import ZocialI from 'react-native-vector-icons/Zocial'
 
 
+// Explicit Version 
 export const MaterialCommunityIcons = props => (
     <MaterialCommunityIconsI {...props} />
 )
+
+// Condensed Version 
  const SimpleLineIcons = props => <SimpleLineIconsI {...props} />
  const MaterialIcons = props => <MaterialIconsI {...props} />
  const FontAwesome = props => <FontAwesomeI {...props} />
@@ -25,6 +28,8 @@ export const MaterialCommunityIcons = props => (
  const Entypo = props => <EntypoI {...props} />
  const Zocial = props => <ZocialI {...props} />
 
+
+// Export all components
 export default  {
     MaterialCommunityIcons,
     SimpleLineIcons,
