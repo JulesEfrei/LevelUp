@@ -1,6 +1,6 @@
 import { View, Text, SafeAreaView } from "react-native"
 
-import Title from "../components/atoms/Title"
+import CustomText from "../components/atoms/CustomText"
 
 export default function HomeScreen() {
   return (
