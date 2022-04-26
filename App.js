@@ -1,20 +1,57 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import { StyleSheet } from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Ionicon from 'react-native-vector-icons/Ionicons';
+
+
+import HomeScreen from './src/views/HomeScreen';
+
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    
+    <NavigationContainer>
+      <Tab.Navigator initialRouteName="Home" screenOptions={({ route }) => ({
+          tabBarIcon: () => {
+            let iconName;
+
+            if (route.name === 'Home') {
+              return <Ionicon name="home-outline" size={30} color="black" />;
+            } 
+            else if (route.name === 'Profile') {
+              return <FontAwesome name="user-o" size={30} color="black" />;
+            }
+            else if (route.name === 'Goals') {
+              return <Ionicon name="md-medal-outline" size={30} color="black" />;
+            }
+            else if (route.name === 'Categories') {
+              return <Ionicon name="menu" size={30} color="black" />;
+            }
+            else if (route.name === 'AddActivities') {
+              return <FontAwesome name="plus-square-o" size={30} color="#90A9B7" />;
+            }
+            
+           },
+          // tabBarActiveTintColor: 'tomato',
+          // tabBarInactiveTintColor: 'gray',
+          tabBarLabel: () => { return null },
+        })}
+      >
+        <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+        <Tab.Screen name="Categories" component={HomeScreen} options={{ headerShown: false }} />
+        <Tab.Screen name="AddActivities" component={HomeScreen} options={{ headerShown: false }} />
+        <Tab.Screen name="Goals" component={HomeScreen} options={{ headerShown: false }} />
+        <Tab.Screen name="Profile" component={HomeScreen} options={{ headerShown: false }} />
+      </Tab.Navigator>
+    </NavigationContainer>
+
   );
+
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const styles = StyleSheet.create({});
