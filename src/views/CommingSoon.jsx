@@ -16,7 +16,7 @@ export default function CommingSoon() {
             </View>
 
             <View style={styles.subContainer}>
-                <Title size="xl" content="Comming Soon..." style={styles.title}/>
+                <Title size="xl" content="Comming Soon..." style={styles.title}/> //Il faut passer style en props sur le composant
                 <Illustration name="inProgress" />
             </View>
 

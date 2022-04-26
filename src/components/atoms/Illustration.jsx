@@ -10,7 +10,7 @@ export default function Illustration({name}) {
 
         <Image
           style={styles.default}
-          source={images.name}
+          source={images[name]}
         />
 
         </>
