@@ -1,6 +1,6 @@
 import { View, Text, SafeAreaView } from "react-native"
 
-import ToggleButton from "../components/atoms/ToggleButton"
+import CustomInput from "../components/atoms/CustomInput"
 
 
 export default function HomeScreen() {
@@ -12,7 +12,10 @@ export default function HomeScreen() {
 
         <Text>Home Page</Text>
 
-        <ToggleButton />
+        <CustomInput content="Text" type="text" />
+        <CustomInput content="Email" type="email" />
+        <CustomInput content="Password" type="password" />
+        <CustomInput content="Time" type="time" />
 
 
       </SafeAreaView>
