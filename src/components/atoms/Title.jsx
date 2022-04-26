@@ -1,6 +1,6 @@
 import { Text, StyleSheet } from 'react-native'
 
-export default function Title({size, content}) {
+export default function Title({size, content, style = {}}) {
 
     const selectSize = (size) => {
 
@@ -16,7 +16,7 @@ export default function Title({size, content}) {
 
   return (
     
-    <Text style={selectSize(size)}>{ content }</Text>
+    <Text style={[style, selectSize(size)]}>{ content }</Text>
 
   )
 }
