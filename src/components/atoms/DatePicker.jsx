@@ -1,20 +1,17 @@
-import { useState } from 'react'
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-export default function DataPicker() {
-
-    const [date, setDate] = useState(new Date());
+export default function DataPicker({ state, setState }) {
 
     const onChange = (event, selectedDate) => {
       const currentDate = selectedDate;
-      setDate(currentDate);
+      setState(currentDate);
     };
 
     return (
 
         <DateTimePicker
             testID="dateTimePicker"
-            value={date}
+            value={state}
             mode="time"
             is24Hour={true}
             // themeVariant="light" USE THEME CONTEXT
