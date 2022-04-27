@@ -1,6 +1,6 @@
 import { Text, StyleSheet } from "react-native"
 
-export default function CustomText({align = "left", content, size = "default"}) {
+export default function CustomText({align = "left", content, size = "default", style = {}}) {
 
     const selectAlign = (align) => {
 
@@ -28,7 +28,7 @@ export default function CustomText({align = "left", content, size = "default"}) 
 
     return (
 
-        <Text style={[selectSize(size), selectAlign(align)]} >{ content }</Text>
+        <Text style={[style, selectSize(size), selectAlign(align)]} >{ content }</Text>
 
     )
 
