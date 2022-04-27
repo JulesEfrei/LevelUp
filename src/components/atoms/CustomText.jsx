@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         fontSize: 16
     },
     sm: {
-        fontSize: 12
+        fontSize: 13
     },
     left: {
         textAlign: "left"
