@@ -9,6 +9,7 @@ import IoniconsI from 'react-native-vector-icons/Ionicons'
 import FeatherI from 'react-native-vector-icons/Feather'
 import EntypoI from 'react-native-vector-icons/Entypo'
 import ZocialI from 'react-native-vector-icons/Zocial'
+import AntDesignI from 'react-native-vector-icons/AntDesign'
 
 
 // Explicit Version 
@@ -27,6 +28,7 @@ export const MaterialCommunityIcons = props => (
  const Feather = props => <FeatherI {...props} />
  const Entypo = props => <EntypoI {...props} />
  const Zocial = props => <ZocialI {...props} />
+ const AntDesign = props => <AntDesignI {...props} />
 
 
 // Export all components
@@ -42,7 +44,8 @@ export default  {
     Octicons,
     Feather,
     Entypo,
-    Zocial 
+    Zocial,
+    AntDesign
 }
 
 
