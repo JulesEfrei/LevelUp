@@ -1,0 +1,135 @@
+import { useEffect } from 'react'
+import { View, TouchableOpacity, StyleSheet } from 'react-native'
+import { useState } from 'react/cjs/react.development'
+import CustomInput from "../atoms/CustomInput"
+import CustomText from "../atoms/CustomText"
+import Icon from '../atoms/Icon'
+
+
+export default function Selector() {
+
+    const [show, setShow] = useState(false)
+    const [arrow, setArrow] = useState("down")
+    const [selected, setSelected] = useState("Category Name")
+    const [inputValue, setInputValue] = useState("")
+    const [outputList, setOutputList] = useState([])
+
+    const toggle = () => {
+
+        setShow(!show)
+
+        if(arrow == "down") {
+            setArrow("up")
+        } else if(arrow == "up") {
+            setArrow("down")
+        }
+
+    }
+
+    const select = (category) => {
+        setSelected(category)
+        toggle()
+    }
+
+    useEffect(() => {
+
+        if(inputValue.length != 0) {
+            setOutputList(data.filter(elm => elm.slice(0, inputValue.length) == inputValue).slice(0, 2))
+        } else {
+            setOutputList(data.slice(0, 2))
+        }
+
+    }, [inputValue])
+
+    const data = [
+        "Work",
+        "Games",
+        "Dev",
+        "Study",
+        "Stuvne",
+        "Sgve",
+        "Metting"
+    ]
+
+    return (
+
+        <View style={styles.mainContainer} >
+
+            <TouchableOpacity style={[styles.mainButton, show && styles.newMainBorder]} onPress={toggle}>
+
+                <CustomText content={selected} />
+                <Icon.AntDesign name={arrow} size={18} />
+
+            </TouchableOpacity>
+
+            { show && (
+                <View style={styles.container }>
+                    
+                    <CustomInput type="text" content="Search Category..." style={styles.input} state={setInputValue} />
+                    
+                    <View style={styles.list}>
+
+                        {outputList.map((elm, index) => (
+                            <TouchableOpacity style={styles.item} onPress={() => select(elm)} key={index, "-", index}>
+                                <CustomText content={elm} />
+                            </TouchableOpacity>
+                        ))}
+
+                        <TouchableOpacity style={styles.item}>
+                            <CustomText content="Create Category" style={{ color: "#90A9B7" }} />
+                        </TouchableOpacity>
+
+                    </View>
+
+                </View>
+            )}
+
+        </View>
+
+    )
+
+}
+
+const styles = StyleSheet.create({
+    mainContainer: {
+        width: "100%",
+        marginTop: 50,
+    },
+    mainButton: {
+        padding: 10,
+        borderColor: "black",
+        borderWidth: 1,
+        borderRadius: 10,
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center"
+    },
+    newMainBorder: {
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
+    },
+    container: {
+        width: "100%",
+        borderColor: "black",
+        borderWidth: 1,
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
+    },
+    input: {
+        borderColor: "#DFDFDF",
+        width: "95%",
+        marginTop: 20,
+        alignSelf: "center",
+    },
+    list: {
+        borderTopWidth: 1,
+        borderColor: "#DFDFDF",
+        marginTop: 10
+    },
+    item: {
+        padding: 10,
+        borderTopWidth: 1,
+        borderColor: "#DFDFDF",
+    }
+})

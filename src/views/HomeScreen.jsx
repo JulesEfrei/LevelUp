@@ -1,6 +1,6 @@
 import { View, Text, SafeAreaView } from "react-native"
 
-import TimerInput from "../components/molecules/TimeInput"
+import Selector from "../components/molecules/Selector"
 
 
 export default function HomeScreen() {
@@ -12,7 +12,7 @@ export default function HomeScreen() {
 
         <Text>Home Page</Text>
 
-        <TimerInput />
+        <Selector />
 
 
       </SafeAreaView>
