@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, TextInput, TouchableOpacity, View, Button } from "react-native";
 
+import Icon from "./Icon"
 
 export default function CustomInput({content, type}) {
 
-    const [isVisible, setIsVisible] = useState(true)
+    const [isHide, setIsHide] = useState(true)
 
     return (
 
@@ -16,9 +17,25 @@ export default function CustomInput({content, type}) {
 
             {type == "email" && <TextInput placeholder={content} keyboardType="email-address" />}
 
-            {type == "password" && <TextInput placeholder={content} keyboardType="visible-password" secureTextEntry={isVisible} />}
+            {type == "password" && (
+                <View style={styles.passwordContainer}>
 
-            {type == "time" && <TextInput placeholder={content} keyboardType="numeric" />}
+                    <TextInput placeholder={content} keyboardType="visible-password" secureTextEntry={isHide} style={{width: "90%"}} />
+
+                    <TouchableOpacity onPress={() => setIsHide(!isHide)}>
+
+                        {isHide ? <Icon.Ionicons name="eye-outline" size={20} /> : <Icon.Ionicons name="eye-off-outline" size={20} /> }
+
+                    </TouchableOpacity>
+
+                </View>
+            )}
+
+            {type == "time" && (
+                <View>
+                    
+                </View>
+            )}
 
         </View>
 
@@ -36,5 +53,10 @@ const styles = StyleSheet.create({
         paddingVertical: 7,
         paddingHorizontal: 7,
         marginBottom: 10
+    },
+    passwordContainer: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between"
     }
 })
