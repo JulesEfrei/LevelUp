@@ -1,6 +1,6 @@
 import { View, Text, SafeAreaView } from "react-native"
 
-import CustomInput from "../components/atoms/CustomInput"
+import TimerInput from "../components/molecules/TimeInput"
 
 
 export default function HomeScreen() {
@@ -12,10 +12,7 @@ export default function HomeScreen() {
 
         <Text>Home Page</Text>
 
-        <CustomInput content="Text" type="text" />
-        <CustomInput content="Email" type="email" />
-        <CustomInput content="Password" type="password" />
-        <CustomInput content="Time" type="time" />
+        <TimerInput />
 
 
       </SafeAreaView>

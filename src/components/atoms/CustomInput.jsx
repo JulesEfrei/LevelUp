@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, TextInput, TouchableOpacity, View, Button } from "react-native";
+import { StyleSheet, TextInput, TouchableOpacity, View, Button, Text } from "react-native";
 
 import Icon from "./Icon"
 
@@ -28,12 +28,6 @@ export default function CustomInput({content, type}) {
 
                     </TouchableOpacity>
 
-                </View>
-            )}
-
-            {type == "time" && (
-                <View>
-                    
                 </View>
             )}
 
