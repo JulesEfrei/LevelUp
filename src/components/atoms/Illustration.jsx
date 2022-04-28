@@ -1,15 +1,15 @@
-import { Image, StyleSheet } from "react-native"
+import { Image } from "react-native"
 
 import images from "../../../assets/index"
 
-export default function Illustration({name}) {
+export default function Illustration({name, w = 300, h = 300, styles= {}}) {
 
     return (
 
         <>
 
         <Image
-          style={styles.default}
+          style={[styles, { width: w, height: h }]}
           source={images[name]}
         />
 
@@ -18,10 +18,3 @@ export default function Illustration({name}) {
     )
 
 }
-
-const styles = StyleSheet.create({
-    default: {
-        width: 300,
-        height: 300
-    }
-})
