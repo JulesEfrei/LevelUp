@@ -8,6 +8,7 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 
 import HomeScreen from './src/screen/HomeScreen';
 import CommingSoon from './src/screen/CommingSoon';
+import Login from './src/screen/getStarting/Login';
 
 
 const Tab = createBottomTabNavigator();
@@ -44,7 +45,7 @@ export default function App() {
         })}
       >
         <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-        <Tab.Screen name="Categories" component={HomeScreen} options={{ headerShown: false }} />
+        <Tab.Screen name="Categories" component={Login} options={{ headerShown: false }} />
         <Tab.Screen name="AddActivities" component={HomeScreen} options={{ headerShown: false }} />
         <Tab.Screen name="Goals" component={CommingSoon} options={{ headerShown: false }} />
         <Tab.Screen name="Profile" component={HomeScreen} options={{ headerShown: false }} />

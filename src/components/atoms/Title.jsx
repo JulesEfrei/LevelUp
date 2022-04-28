@@ -1,6 +1,6 @@
 import { Text, StyleSheet } from 'react-native'
 
-export default function Title({size, content, style = {}}) {
+export default function Title({size, align= "left", content, style = {}}) {
 
     const selectSize = (size) => {
 
@@ -14,9 +14,21 @@ export default function Title({size, content, style = {}}) {
 
     }
 
+    const selectAlign = (align) => {
+
+        if(align == "left") {
+            return styles.left
+        } else if(align == "center") {
+            return styles.center
+        } else if(align == "right") {
+            return styles.right
+        }
+
+    }
+
   return (
     
-    <Text style={[style, selectSize(size)]}>{ content }</Text>
+    <Text style={[style, selectSize(size), selectAlign(align)]}>{ content }</Text>
 
   )
 }
@@ -27,5 +39,14 @@ const styles = StyleSheet.create({
     },
     xl: {
         fontSize: 35
-    }
+    },
+    left: {
+        textAlign: "left"
+    },
+    center: {
+        textAlign: "center"
+    },
+    right: {
+        textAlign: "right"
+    },
 })
