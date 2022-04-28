@@ -5,10 +5,12 @@ import CustomInput from "../atoms/CustomInput"
 import CustomText from "../atoms/CustomText"
 import Icon from '../atoms/Icon'
 
+import Toast from 'react-native-toast-message';
+
 
 export default function Selector() {
 
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(true)
     const [arrow, setArrow] = useState("down")
     const [selected, setSelected] = useState("Category Name")
     const [inputValue, setInputValue] = useState("")
@@ -41,6 +43,24 @@ export default function Selector() {
 
     }, [inputValue])
 
+    const newCategory = () => {
+
+        if(inputValue.length == 0) {
+
+            Toast.show({
+                type: "error",
+                text1: "Category name invalid",
+                text2: "Input field is empty",
+            })
+
+        } else {
+
+            console.log(`Updated categories ! ( ${inputValue} Added )`)
+
+        }
+
+    }
+
     const data = [
         "Work",
         "Games",
@@ -52,6 +72,8 @@ export default function Selector() {
     ]
 
     return (
+
+        <>
 
         <View style={styles.mainContainer} >
 
@@ -75,7 +97,7 @@ export default function Selector() {
                             </TouchableOpacity>
                         ))}
 
-                        <TouchableOpacity style={styles.item}>
+                        <TouchableOpacity style={styles.item} onPress={newCategory}>
                             <CustomText content="Create Category" style={{ color: "#90A9B7" }} />
                         </TouchableOpacity>
 
@@ -84,7 +106,13 @@ export default function Selector() {
                 </View>
             )}
 
+
         </View>
+
+        <Toast />
+
+
+        </>
 
     )
 
