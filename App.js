@@ -6,8 +6,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 
 
-import HomeScreen from './src/views/HomeScreen';
-import CommingSoon from './src/views/CommingSoon';
+import HomeScreen from './src/screen/HomeScreen';
+import CommingSoon from './src/screen/CommingSoon';
 
 
 const Tab = createBottomTabNavigator();
