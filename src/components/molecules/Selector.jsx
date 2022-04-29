@@ -10,7 +10,7 @@ import Toast from 'react-native-toast-message';
 
 export default function Selector() {
 
-    const [show, setShow] = useState(true)
+    const [show, setShow] = useState(false)
     const [arrow, setArrow] = useState("down")
     const [selected, setSelected] = useState("Category Name")
     const [inputValue, setInputValue] = useState("")
