@@ -28,12 +28,8 @@ export default function Login() {
 
                 <View style={{ marginTop: 20 }}>
                     
-                    <CustomButton type="custom" onPress={() => console.log("Google Poppup !")} style={[styles.button, {marginBottom: 10}]} data={(
+                    <CustomButton type="custom" onPress={() => console.log("Google Poppup !")} style={styles.button} data={(
                         <CustomText content="Login with Google" />
-                    )} />
-
-                    <CustomButton type="custom" onPress={() => console.log("Apple Poppup !")} style={styles.button} data={(
-                        <CustomText content="Login with Apple" />
                     )} />
 
                 </View>
