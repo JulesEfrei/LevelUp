@@ -1,9 +1,13 @@
 import { View, Text, SafeAreaView } from "react-native"
+import { useContext } from "react";
+import { AuthUserContext } from "../utils/context/index";
 
-import Selector from "../components/molecules/Selector"
 
 
 export default function HomeScreen() {
+
+  const { user } = useContext(AuthUserContext);
+
   return (
     
     <View>
@@ -12,7 +16,7 @@ export default function HomeScreen() {
 
         <Text>Home Page</Text>
 
-        <Selector />
+        <Text>{ user.email }</Text>
 
 
       </SafeAreaView>

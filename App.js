@@ -1,22 +1,28 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { StyleSheet } from 'react-native';
+import RootNavigation from './src/utils/navigation/RootNavigator'
 
-import UserNavigation from './src/navigation/UserNavigation';
+import { AuthUserProvider } from './src/utils/context/AuthUserProvider';
+
 
 
 
 export default function App() {
+  
+
 
   return (
+
+    <AuthUserProvider>
     
-    <NavigationContainer>
-      <UserNavigation />
-    </NavigationContainer>
+      <NavigationContainer>
+
+        <RootNavigation />
+
+      </NavigationContainer>
+
+    </AuthUserProvider>
 
   );
 
 }
-
-const styles = StyleSheet.create({});

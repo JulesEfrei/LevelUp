@@ -7,10 +7,28 @@ import CustomButton from "../../components/atoms/CustomButton"
 import CustomText from '../../components/atoms/CustomText'
 
 
+import {signInWithEmailAndPassword, getAuth } from 'firebase/auth' 
+
+
+import firebaseConfig from '../../../config/firebase';
+import { initializeApp } from 'firebase/app';
+
+
 export default function Login() {
 
     const title = "Get starting,"
     const subTitle = "by login you with a Google account"
+
+    
+    async function signIn(email, password) {
+        const Firebase = initializeApp(firebaseConfig);
+        try {
+         const dd = await signInWithEmailAndPassword(getAuth(Firebase), email, password);
+         console.log(dd)
+        } catch (err) {
+          console.log("There is something wrong!", err.message);
+        }
+      }
     
 
     return (
@@ -28,7 +46,7 @@ export default function Login() {
 
                 <View style={{ marginTop: 20 }}>
                     
-                    <CustomButton type="custom" onPress={() => console.log("Google Poppup !")} style={styles.button} data={(
+                    <CustomButton type="custom" onPress={() => signIn("test@gmail.com", "admin12") } style={styles.button} data={(
                         <CustomText content="Login with Google" />
                     )} />
 

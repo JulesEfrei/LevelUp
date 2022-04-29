@@ -4,11 +4,14 @@ import Title from "../../components/atoms/Title";
 import Logo from "../../components/atoms/Logo";
 import CustomButton from "../../components/atoms/CustomButton";
 import Icon from "../../components/atoms/Icon";
+import { useNavigation } from "@react-navigation/core";
 
 export default function Features() {
 
     const title = "Stay motivated and productive !"
     const text = "Register all your activities and won Xp for all your tasks"
+
+    const navigation = useNavigation();
 
     return (
 
@@ -31,7 +34,7 @@ export default function Features() {
                     </View>
 
 
-                        <CustomButton type="icon" data={{ name: "arrow-forward" , size: 20}} style={styles.button} onPress={() => console.log("Navigate")} />
+                        <CustomButton type="icon" data={{ name: "arrow-forward" , size: 20}} style={styles.button} onPress={() => navigation.push('Login')} />
 
                 </View>
 

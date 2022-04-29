@@ -4,11 +4,14 @@ import Title from "../../components/atoms/Title";
 import Logo from "../../components/atoms/Logo";
 import CustomButton from "../../components/atoms/CustomButton";
 import Icon from "../../components/atoms/Icon";
+import { useNavigation } from "@react-navigation/core";
 
 export default function Welcome() {
 
     const title = "Welcome on LevelUp"
     const text = "A motivation application to help you with your productivity"
+
+    const navigation = useNavigation();
 
     return (
 
@@ -31,7 +34,7 @@ export default function Welcome() {
                     </View>
 
 
-                        <CustomButton type="icon" data={{ name: "arrow-forward" , size: 20}} style={styles.button} onPress={() => console.log("Navigate")} />
+                        <CustomButton type="icon" data={{ name: "arrow-forward" , size: 20}} style={styles.button} onPress={() => navigation.push('Features')} />
 
                 </View>
 
