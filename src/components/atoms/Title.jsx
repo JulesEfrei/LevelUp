@@ -1,6 +1,6 @@
 import { Text, StyleSheet } from 'react-native'
 
-export default function Title({size, align= "left", content, style = {}}) {
+export default function Title({size = "sm", align= "left", content, style = {}}) {
 
     const selectSize = (size) => {
 

@@ -10,7 +10,8 @@ import LoginNavigation from './LoginNavigation';
 
 import { AuthUserContext } from '../context/index';
 
-import { onAuthStateChanged } from 'firebase/auth';
+import { firebaseConfig, Firebase } from '../../../config/firebase';
+import { onAuthStateChanged, getAuth } from 'firebase/auth';
 
 
 export default function App() {
@@ -21,7 +22,7 @@ export default function App() {
 
   useEffect(() => {
     // onAuthStateChanged returns an unsubscriber
-    const unsubscribeAuth = onAuthStateChanged(async authenticatedUser => {
+    const unsubscribeAuth = onAuthStateChanged(getAuth(Firebase), async authenticatedUser => {
       try {
         await (authenticatedUser ? setUser(authenticatedUser) : setUser(null));
       } catch (error) {

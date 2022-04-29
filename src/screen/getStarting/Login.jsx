@@ -10,8 +10,8 @@ import CustomText from '../../components/atoms/CustomText'
 import {signInWithEmailAndPassword, getAuth } from 'firebase/auth' 
 
 
-import firebaseConfig from '../../../config/firebase';
-import { initializeApp } from 'firebase/app';
+import { firebaseConfig, Firebase } from '../../../config/firebase';
+
 
 
 export default function Login() {
@@ -21,7 +21,6 @@ export default function Login() {
 
     
     async function signIn(email, password) {
-        const Firebase = initializeApp(firebaseConfig);
         try {
          const dd = await signInWithEmailAndPassword(getAuth(Firebase), email, password);
          console.log(dd)

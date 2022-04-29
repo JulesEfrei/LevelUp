@@ -2,10 +2,11 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import Constants from 'expo-constants';
+import { initializeApp } from 'firebase/app';
 
 
 // Web app's Firebase configuration
-export default firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyDhX1JG0oyJpUcMgu59Ukv32LSvebcHfhU",
   authDomain: "levelup_52aee.firebaseapp.com",
   projectId: "levelup_52aee",
@@ -15,9 +16,8 @@ export default firebaseConfig = {
 };
 
 // Initialize Firebase
-// Firebase = firebase.initializeApp(firebaseConfig);
+export const Firebase = initializeApp(firebaseConfig);
 
-// export default Firebase;
 
 
 

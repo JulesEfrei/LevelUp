@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import HomeScreen from '../../screen/HomeScreen';
 import CommingSoon from '../../screen/CommingSoon';
-import Login from '../../screen/getStarting/Login';
+import Profile from '../../screen/Profile';
 
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -41,10 +41,10 @@ export default function UserNavigation() {
           })}
         >
           <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-          <Tab.Screen name="Categories" component={Login} options={{ headerShown: false }} />
+          <Tab.Screen name="Categories" component={HomeScreen} options={{ headerShown: false }} />
           <Tab.Screen name="AddActivities" component={HomeScreen} options={{ headerShown: false }} />
           <Tab.Screen name="Goals" component={CommingSoon} options={{ headerShown: false }} />
-          <Tab.Screen name="Profile" component={HomeScreen} options={{ headerShown: false }} />
+          <Tab.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
         </Tab.Navigator>
             
     )
