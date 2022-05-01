@@ -29,15 +29,17 @@ export default function Login() {
                     <Title content={subTitle} size="sm" />
                 </View>
 
-                <View style={{ marginTop: 20 }}>
+                <View style={styles.buttonContainer}>
                     
-                    <CustomButton type="custom" onPress={() => navigation.push('LoginWithEmail') } style={[styles.button, { marginBottom: 20 }]} data={(
+                    <CustomButton type="custom" onPress={() => navigation.push('SignInWithEmail') } style={[styles.button, { marginBottom: 20 }]} data={(
                         <CustomText content="Login with Email" />
                     )} />
 
-                    <CustomButton type="custom" onPress={() => console.log("SignIn with Google") } style={styles.button} data={(
+                    <CustomButton type="custom" onPress={() => console.log("SignIn with Google") } style={[styles.button, { marginBottom: 20 }]} data={(
                         <CustomText content="Login with Google" />
                     )} />
+
+                    <CustomButton type="text" onPress={() => navigation.push("SignUpWithEmail") } data={{ content: "Create an account" }} textStyle={styles.register}/>
 
                 </View>
 
@@ -59,16 +61,29 @@ const styles = StyleSheet.create({
     },
     content: {
         height: "60%",
+        width: "100%",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-around"
     },
     textContainer: {
     },
+    buttonContainer: {
+        marginTop: 20,
+        display: "flex",
+        alignItems: "center",
+        width: "46%"
+    },
     button: {
+        width: "100%",
         backgroundColor: "#90A9B7",
         paddingVertical: 10,
         paddingHorizontal: 20,
         borderRadius: 10,
+    },
+    register: {
+        color: "#0B58CA",
+        textDecorationLine: "underline",
+        textDecorationColor: "#0B58CA"
     }
 })

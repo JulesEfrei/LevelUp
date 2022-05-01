@@ -10,7 +10,7 @@ import CustomButton from "../../components/atoms/CustomButton"
 import CustomInput from "../../components/atoms/CustomInput"
 import Icon from '../../components/atoms/Icon'
 
-import {signInWithEmailAndPassword, getAuth } from 'firebase/auth' 
+import {signInWithEmailAndPassword, getAuth, createUserWithEmailAndPassword } from 'firebase/auth' 
 import { firebaseConfig, Firebase } from '../../../config/firebase';
 
 import Toast from 'react-native-toast-message';
@@ -18,7 +18,7 @@ import { NavigationContainer } from '@react-navigation/native'
 
 
 
-export default function LoginWithEmail() {
+export default function LoginWithEmail({type}) {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -49,6 +49,28 @@ export default function LoginWithEmail() {
         }
       }
 
+    async function signUp(email, password) {
+
+
+        if(email == "" || password == "") {
+
+            Toast.show({
+                type: "error",
+                text1: "Error",
+                text2: "Input form is empty"
+            })
+
+        } else {
+
+            try {
+                await createUserWithEmailAndPassword(getAuth(Firebase), email, password)
+            } catch(err) {
+                popup(err.message)
+            }
+        
+        }
+      }
+
       function popup(err) {
 
         let errorType = err.split("").slice(err.split("").findIndex(elm => elm == "/") + 1 , err.split("").findIndex(elm => elm == ")")).join("")
@@ -68,6 +90,22 @@ export default function LoginWithEmail() {
                 type: "error",
                 text1: "Invalid Password",
                 text2: "Please try again"
+            })
+
+        } else if(errorType == "weak-password" ) {
+
+            Toast.show({
+                type: "error",
+                text1: "Week Password",
+                text2: "Password should be at least 6 characters"
+            })
+
+        } else if(errorType == "user-not-found" ) {
+
+            Toast.show({
+                type: "error",
+                text1: "User Not Found",
+                text2: "Please try again or create a new account"
             })
 
         } else {
@@ -109,7 +147,7 @@ export default function LoginWithEmail() {
                         <CustomInput type="password" content="Password" state={setPassword} />
                     </View>
 
-                    <CustomButton type="text" onPress={() => signIn(email, password)} data={{ content: "Sign In" }} style={styles.button} />
+                    <CustomButton type="text" onPress={() => type == "signIn" ? signIn(email, password) : signUp(email, password) } data={{ content: type == "signIn" ? "Sign In" : "Sign Up" }} style={styles.button} />
 
                 </View>
 

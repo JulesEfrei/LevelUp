@@ -18,8 +18,6 @@ export default function App() {
 
   const {user, setUser} = useContext(AuthUserContext)
 
-  console.log(user)
-
   useEffect(() => {
     // onAuthStateChanged returns an unsubscriber
     const unsubscribeAuth = onAuthStateChanged(getAuth(Firebase), async authenticatedUser => {
