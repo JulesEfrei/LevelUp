@@ -2,13 +2,13 @@ import { TouchableOpacity } from "react-native";
 import CustomText from "./CustomText";
 import Icon from "./Icon";
 
-export default function CustomButton({type, data, style= {}, onPress}) {
+export default function CustomButton({type, data, style= {}, onPress, textStyle={}}) {
 
     return (
 
         <TouchableOpacity style={[style]} onPress={onPress}>
 
-            {type == "text" && <CustomText content={data.content} align={data.align} size={data.size}/>}
+            {type == "text" && <CustomText content={data.content} align={data.align} size={data.size} style={[textStyle]} />}
 
             {/* Need to be patched (=> not working) */}
             {type == "icon" && <Icon.MaterialIcons name={data.name} size={data.size} />}
