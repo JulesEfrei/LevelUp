@@ -2,16 +2,19 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useState } from 'react'
+import { useNavigation } from '@react-navigation/core'
 
 import Logo from "../../components/atoms/Logo"
 import Title from "../../components/atoms/Title"
 import CustomButton from "../../components/atoms/CustomButton"
 import CustomInput from "../../components/atoms/CustomInput"
+import Icon from '../../components/atoms/Icon'
 
 import {signInWithEmailAndPassword, getAuth } from 'firebase/auth' 
 import { firebaseConfig, Firebase } from '../../../config/firebase';
 
 import Toast from 'react-native-toast-message';
+import { NavigationContainer } from '@react-navigation/native'
 
 
 
@@ -19,6 +22,7 @@ export default function LoginWithEmail() {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const navigation = useNavigation()
 
     async function signIn(email, password) {
 
@@ -82,6 +86,10 @@ export default function LoginWithEmail() {
     return (
    
         <SafeAreaView style={styles.container}>
+
+            <CustomButton type="custom" style={styles.back} onPress={() => navigation.goBack()} data={(
+                <Icon.AntDesign name="left" size={30} />
+            )} />
 
             <View style={styles.s}>
 
@@ -147,5 +155,10 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
         borderRadius: 10,
+    },
+    back: {
+        position: "absolute",
+        top: 50,
+        left: 20
     }
 })
