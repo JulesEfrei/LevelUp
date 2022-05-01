@@ -37,12 +37,11 @@ export default function LoginWithEmail({type}) {
         } else {
 
             try {
-             const dd = await signInWithEmailAndPassword(getAuth(Firebase), email, password);
-             console.log(dd)
+                await signInWithEmailAndPassword(getAuth(Firebase), email, password);
             } catch (err) {
-              console.log("There is something wrong!", err.message);
+                console.log("There is something wrong!", err.message);
     
-              popup(err.message)
+                popup(err.message)
     
             }
 
