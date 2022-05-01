@@ -5,29 +5,15 @@ import Logo from "../../components/atoms/Logo"
 import Title from "../../components/atoms/Title"
 import CustomButton from "../../components/atoms/CustomButton"
 import CustomText from '../../components/atoms/CustomText'
-
-
-import {signInWithEmailAndPassword, getAuth } from 'firebase/auth' 
-
-
-import { firebaseConfig, Firebase } from '../../../config/firebase';
+import { useNavigation } from '@react-navigation/core'
 
 
 
 export default function Login() {
-
+    
+    const navigation = useNavigation()
     const title = "Get starting,"
     const subTitle = "by login you with a Google account"
-
-    
-    async function signIn(email, password) {
-        try {
-         const dd = await signInWithEmailAndPassword(getAuth(Firebase), email, password);
-         console.log(dd)
-        } catch (err) {
-          console.log("There is something wrong!", err.message);
-        }
-      }
     
 
     return (
@@ -45,7 +31,11 @@ export default function Login() {
 
                 <View style={{ marginTop: 20 }}>
                     
-                    <CustomButton type="custom" onPress={() => signIn("test@gmail.com", "admin12") } style={styles.button} data={(
+                    <CustomButton type="custom" onPress={() => navigation.push('LoginWithEmail') } style={[styles.button, { marginBottom: 20 }]} data={(
+                        <CustomText content="Login with Email" />
+                    )} />
+
+                    <CustomButton type="custom" onPress={() => console.log("SignIn with Google") } style={styles.button} data={(
                         <CustomText content="Login with Google" />
                     )} />
 

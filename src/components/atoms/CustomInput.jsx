@@ -15,12 +15,12 @@ export default function CustomInput({content, type, style = {}, state}) {
 
             {type == "text" && <TextInput placeholder={content} keyboardType="default" onChangeText={(e) => state(e)} />}
 
-            {type == "email" && <TextInput placeholder={content} keyboardType="email-address" onChangeText={(e) => state(e.target.value)} />}
+            {type == "email" && <TextInput placeholder={content} keyboardType="email-address" onChangeText={(e) => state(e)} autoCapitalize='none' />}
 
             {type == "password" && (
                 <View style={styles.passwordContainer}>
 
-                    <TextInput placeholder={content} keyboardType="visible-password" secureTextEntry={isHide} style={{width: "90%"}} onChangeText={(e) => state(e.target.value)} />
+                    <TextInput placeholder={content} keyboardType="visible-password" secureTextEntry={isHide} style={{width: "90%"}} onChangeText={(e) => state(e)} autoCapitalize='none' />
 
                     <TouchableOpacity onPress={() => setIsHide(!isHide)}>
 
