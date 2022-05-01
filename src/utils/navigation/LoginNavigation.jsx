@@ -12,7 +12,7 @@ export default function UserNavigation() {
 
     return (
 
-        <Stack.Navigator initialRouteName="LoginWithEmail">
+        <Stack.Navigator initialRouteName="Welcome">
           <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
           <Stack.Screen name="Features" component={Features} options={{ headerShown: false }} />
           <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
