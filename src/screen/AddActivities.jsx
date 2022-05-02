@@ -79,7 +79,7 @@ export default function AddActivities() {
                 </View>
 
                 <View>
-                    <CustomButton type="text" data={{ content: "Save" }} style={styles.saveButton} onPress={() => verify()} />
+                    <CustomButton type="text" data={{ content: "Save" }} style={styles.saveButton} textStyle={{color: "white"}} onPress={() => verify()} />
                 </View>
 
             </View>
