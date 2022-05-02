@@ -113,7 +113,7 @@ export default function Selector({state}) {
                         ))}
 
                         <TouchableOpacity style={styles.item} onPress={newCategory}>
-                            <CustomText content="Create Category" style={{ color: "#90A9B7" }} />
+                            <CustomText content="Create Category" style={{ color: "#3870FF" }} />
                         </TouchableOpacity>
 
                     </View>

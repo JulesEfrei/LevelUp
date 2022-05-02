@@ -146,7 +146,7 @@ export default function LoginWithEmail({type}) {
                         <CustomInput type="password" content="Password" state={setPassword} />
                     </View>
 
-                    <CustomButton type="text" onPress={() => type == "signIn" ? signIn(email, password) : signUp(email, password) } data={{ content: type == "signIn" ? "Sign In" : "Sign Up" }} style={styles.button} />
+                    <CustomButton type="text" onPress={() => type == "signIn" ? signIn(email, password) : signUp(email, password) } data={{ content: type == "signIn" ? "Sign In" : "Sign Up" }} style={styles.button} textStyle={{color: "white"}} />
 
                 </View>
 
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     button: {
-        backgroundColor: "#90A9B7",
+        backgroundColor: "#3870FF",
         paddingVertical: 10,
         paddingHorizontal: 20,
         borderRadius: 10,

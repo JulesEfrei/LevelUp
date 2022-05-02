@@ -32,11 +32,11 @@ export default function Login() {
                 <View style={styles.buttonContainer}>
                     
                     <CustomButton type="custom" onPress={() => navigation.push('SignInWithEmail') } style={[styles.button, { marginBottom: 20 }]} data={(
-                        <CustomText content="Login with Email" />
+                        <CustomText content="Login with Email" style={{ color: "white" }} />
                     )} />
 
                     <CustomButton type="custom" onPress={() => console.log("SignIn with Google") } style={[styles.button, { marginBottom: 20 }]} data={(
-                        <CustomText content="Login with Google" />
+                        <CustomText content="Login with Google" style={{ color: "white" }} />
                     )} />
 
                     <CustomButton type="text" onPress={() => navigation.push("SignUpWithEmail") } data={{ content: "Create an account" }} textStyle={styles.register}/>
@@ -76,14 +76,14 @@ const styles = StyleSheet.create({
     },
     button: {
         width: "100%",
-        backgroundColor: "#90A9B7",
+        backgroundColor: "#3870FF",
         paddingVertical: 10,
         paddingHorizontal: 20,
         borderRadius: 10,
     },
     register: {
-        color: "#0B58CA",
+        color: "#3870FF",
         textDecorationLine: "underline",
-        textDecorationColor: "#0B58CA"
+        textDecorationColor: "#3870FF"
     }
 })
