@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, TouchableOpacity, StyleSheet } from "react-native"
+import { View, Text, SafeAreaView, TouchableOpacity, StyleSheet, ScrollView } from "react-native"
 import { useContext, useEffect } from "react";
 import { AuthUserContext } from "../utils/context/index";
 
@@ -24,27 +24,32 @@ export default function HomeScreen() {
 
   return (
     
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
 
-      <View style={styles.logo}>
-        <Logo size="sm" />
-      </View>
+      <ScrollView contentContainerStyle={styles.container}>
 
-      <View style={styles.header}>
-
-        <View style={styles.titleContainer}>
-            <Title content="Bonjour " style={styles.title1} />
-            <View style={styles.title2}>
-              <Title content={displayName() } style={{ color: "white" }} />
-            </View>
-            <Title content=" !" style={styles.title1} />
+        <View style={styles.logo}>
+          <Logo size="sm" />
         </View>
 
-        <Quote />
 
-      </View>
+        <View style={styles.header}>
 
-      <RecentActivities />
+          <View style={styles.titleContainer}>
+              <Title content="Bonjour " style={styles.title1} />
+              <View style={styles.title2}>
+                <Title content={displayName() } style={{ color: "white" }} />
+              </View>
+              <Title content=" !" style={styles.title1} />
+          </View>
+
+          <Quote />
+
+        </View>
+
+        <RecentActivities />
+
+      </ScrollView>
 
 
     </SafeAreaView>
