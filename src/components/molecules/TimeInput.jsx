@@ -61,7 +61,6 @@ export default function TimerInput() {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 50,
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",

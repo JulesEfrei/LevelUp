@@ -121,7 +121,6 @@ export default function Selector() {
 const styles = StyleSheet.create({
     mainContainer: {
         width: "100%",
-        marginTop: 50,
     },
     mainButton: {
         padding: 10,
