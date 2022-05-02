@@ -34,6 +34,17 @@ export default function AddActivities() {
             console.log(`Category name : ${category.name}`)
             console.log(`Time : ${time}`)
 
+            if(category.level == 0) {
+
+                // Create new category in the database (=> function)
+
+            } else {
+
+                // Get category from database
+                //Create activiti in the database
+
+            }
+
         }
 
     }
