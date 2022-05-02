@@ -14,7 +14,7 @@ export default function SettingsContainer() {
     <View style={styles.container}>
 
 
-        <TouchableOpacity style={[styles.item, { justifyContent: "space-between" }]} onPress={() => console.log("Setting")}>
+        <View style={[styles.item, { justifyContent: "space-between" }]} onPress={() => console.log("Setting")}>
 
           <View style={styles.settingContainerLeft}>
             <View style={[styles.icon, { backgroundColor: "#D9DADD" }]}>
@@ -22,13 +22,13 @@ export default function SettingsContainer() {
             </View>
             <View style={styles.dataContainer}>
                 <CustomText size={18} content="Dark Mode"  style={styles.title} />
-                <CustomText content="In Beta" style={styles.data} size="sm" />
+                <CustomText content="In Beta (not working)" style={styles.data} size="sm" />
             </View>
           </View>
 
           <ToggleButton style={styles.toggleButton} />
 
-        </TouchableOpacity>
+        </View>
 
         <TouchableOpacity style={[styles.item, { justifyContent: "space-between" }]} onPress={() => console.log("Setting")}>
 
@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   toggleButton: {
-    transform: [{ scaleX: .8 }, { scaleY: .8 }]
+    transform: [{ scaleX: .8 }, { scaleY: .8 }],
+    marginLeft: 65 
   }
 })
