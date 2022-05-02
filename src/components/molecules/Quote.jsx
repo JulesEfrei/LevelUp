@@ -38,8 +38,8 @@ export default function Quote() {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#EFD09E",
-        width: "95%",
+        backgroundColor: "#ffbd73",
+        width: "100%",
         borderRadius: 10,
         paddingHorizontal: 20,
         paddingVertical: 15,
