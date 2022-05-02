@@ -32,7 +32,7 @@ export default function UserNavigation() {
                 return <Ionicon name="menu" size={30} color="black" />;
               }
               else if (route.name === 'AddActivities') {
-                return <FontAwesome name="plus-square-o" size={30} color="#90A9B7" />;
+                return <FontAwesome name="plus-square-o" size={30} color="#3870FF" />;
               }
               
              },

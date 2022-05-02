@@ -70,6 +70,6 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         paddingVertical: 10,
         paddingHorizontal: 15,
-        backgroundColor: "#90A9B7"
+        backgroundColor: "#3870FF"
     }
 })
