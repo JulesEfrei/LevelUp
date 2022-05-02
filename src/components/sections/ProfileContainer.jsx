@@ -6,13 +6,11 @@ import { AuthUserContext } from '../../utils/context'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import CustomText from'../atoms/CustomText'
 import Icon from '../atoms/Icon'
-import { useNavigation } from '@react-navigation/core'
 
 
 const ProfileContainer = () => {
 
     const { user } = useContext(AuthUserContext);
-    const navigation = useNavigation()
 
     function displayName() {
       if(user.displayName) {
@@ -45,19 +43,6 @@ const ProfileContainer = () => {
           </View>
         </View>
 
-        <TouchableOpacity style={[styles.item, { justifyContent: "space-between" }]} onPress={() => console.log("Setting")}>
-
-          <View style={styles.settingContainerLeft}>
-            <View style={[styles.icon, { backgroundColor: "#D9DADD" }]}>
-              <Icon.AntDesign name="setting" size={20} />
-            </View>
-            <CustomText size={18} content="Settings"  style={styles.title} />
-          </View>
-
-          <Icon.AntDesign name="right" size={15} />
-
-        </TouchableOpacity>
-
     </View>
   )
 }
@@ -86,10 +71,4 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: "bold"
   },
-  settingContainerLeft: {
-    width: "60%",
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center"
-  }
 })
