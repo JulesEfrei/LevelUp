@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         width: "100%",
         alignItems: "center",
-        top: 50
+        top: 47
     },
     subContainer: {
         width: "100%",
