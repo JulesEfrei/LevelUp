@@ -12,7 +12,9 @@ const Profile = () => {
 
         <ProfileNavBar />
 
-        <Title content="Profile" style={styles.title}/>
+        <View style={styles.titleContainer} >
+          <Title content="Profile"/>
+        </View>
 
         <ProfileContainer />
 
@@ -24,7 +26,11 @@ const Profile = () => {
 export default Profile
 
 const styles = StyleSheet.create({
-    title: {
-        padding: 30
+    titleContainer: {
+      width: 72,
+      marginLeft: 30,
+      borderBottomWidth: 1,
+      borderColor: "black",
+      paddingBottom: 5
     }
 })
