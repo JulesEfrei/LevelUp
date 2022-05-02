@@ -10,7 +10,7 @@ export default function TimerInput({setTime}) {
 
     useEffect(() => {
 
-        console.log(start.toLocaleTimeString(), " ", end.toLocaleTimeString())
+        // console.log(start.toLocaleTimeString(), " ", end.toLocaleTimeString())
 
         // Total of minute between both time
         let minutes = (end-start)/1000/60
@@ -21,8 +21,12 @@ export default function TimerInput({setTime}) {
         // Calcul the number of minutes from the hours
         let minutesFormated = Math.floor(minutes - (hours * 60))
 
+
         // Formated Time (=> hours:minutes -> 00:00)
-        let formatedTime = hours + ":" + minutesFormated
+        let formatedHours = String(hours).length == 1 ? `0${hours}` : hours
+        let formatedMinute = String(minutesFormated).length == 1 ? `0${minutesFormated}` : minutesFormated
+        let formatedTime = formatedHours + ":" + formatedMinute
+
 
         setTime(formatedTime)
 
