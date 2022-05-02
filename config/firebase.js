@@ -1,8 +1,9 @@
 // Import the functions you need from the SDKs you need
-import firebase from 'firebase/app';
 import 'firebase/auth';
 import Constants from 'expo-constants';
 import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getDatabase } from "firebase/database";
 
 
 // Web app's Firebase configuration

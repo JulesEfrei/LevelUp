@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { View, TouchableOpacity, StyleSheet } from 'react-native'
 import { useState } from 'react/cjs/react.development'
 import CustomInput from "../atoms/CustomInput"
@@ -6,15 +6,18 @@ import CustomText from "../atoms/CustomText"
 import Icon from '../atoms/Icon'
 
 import Toast from 'react-native-toast-message';
+import { AuthUserContext } from '../../utils/context'
 
 
-export default function Selector() {
+export default function Selector({state}) {
 
     const [show, setShow] = useState(false)
     const [arrow, setArrow] = useState("down")
     const [selected, setSelected] = useState("Category Name")
     const [inputValue, setInputValue] = useState("")
     const [outputList, setOutputList] = useState([])
+
+    const { user } = useContext(AuthUserContext)
 
     const toggle = () => {
 
@@ -29,6 +32,7 @@ export default function Selector() {
     }
 
     const select = (category) => {
+        state({name: category})
         setSelected(category)
         toggle()
     }
@@ -56,10 +60,21 @@ export default function Selector() {
         } else {
 
             console.log(`Updated categories ! ( ${inputValue} Added )`)
+            
+            state({
+                name: inputValue,
+                userUid: user.uid,
+                level: 0,
+                timer: "00:00"
+            })
 
+            toggle()
+            setSelected(inputValue)
         }
 
     }
+
+    
 
     const data = [
         "Work",
@@ -137,6 +152,11 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 0,
     },
     container: {
+        position: "absolute",
+        top: "100%",
+        backgroundColor: "#efefef",
+        zIndex: 3,
+        elevation: 3,
         width: "100%",
         borderColor: "black",
         borderWidth: 1,

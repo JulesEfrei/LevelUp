@@ -3,12 +3,10 @@ import CustomText from "../atoms/CustomText"
 import { StyleSheet, View } from "react-native"
 import { useEffect, useState } from 'react'
 
-export default function TimerInput() {
+export default function TimerInput({setTime}) {
 
     const [start, setStart] = useState(new Date());
     const [end, setEnd] = useState(new Date());
-
-    const [time, setTime] = useState(0)
 
     useEffect(() => {
 
@@ -21,15 +19,12 @@ export default function TimerInput() {
         let hours = Math.floor(minutes / 60)
 
         // Calcul the number of minutes from the hours
-        let minutesFormated = minutes - (hours * 60)
+        let minutesFormated = Math.floor(minutes - (hours * 60))
 
         // Formated Time (=> hours:minutes -> 00:00)
         let formatedTime = hours + ":" + minutesFormated
 
         setTime(formatedTime)
-
-        console.log("Time : ", time)
-        console.log("Calcul : ", formatedTime)
 
     }, [start, end])
 
