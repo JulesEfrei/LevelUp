@@ -1,77 +1,75 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 
 import Title from '../atoms/Title'
 import Activities from '../molecules/Activities'
+import { useState } from 'react/cjs/react.development'
+import { useEffect } from 'react'
+
+import { collection, query, where, getDocs, getDoc } from "firebase/firestore";
+import { db } from "../../../config/firebase"
+import { AuthUserContext } from '../../utils/context'
 
 export default function RecentActivities() {
 
-    const data = [
-       {
-           name: "Check mail",
-           category: {
-               name: "work",
-               color: "#68A7AD"
-           },
-           time: "03:17"
-       },
-       {
-        name: "Write report",
-        category: {
-            name: "work",
-            color: "#68A7AD"
-        },
-        time: "00:42"
-        } ,
-        {
-            name: "Watch series",
-            category: {
-                name: "Chill",
-                color: "#EEE4AB"
-            },
-            time: "03:15"
-        } ,
-        {
-            name: "Dev Level",
-            category: {
-                name: "Development",
-                color: "#E5CB9F"
-            },
-            time: "07:00"
-        },
-        {
-            name: "Watch seri",
-            category: {
-                name: "Chill",
-                color: "#EEE4AB"
-            },
-            time: "03:15"
-        } ,
-        {
-            name: "Dev LevelU",
-            category: {
-                name: "Development",
-                color: "#E5CB9F"
-            },
-            time: "07:00"
-        },
-        {
-            name: "Watch serie",
-            category: {
-                name: "Chill",
-                color: "#EEE4AB"
-            },
-            time: "03:15"
-        } ,
-        {
-            name: "Dev LevelUp",
-            category: {
-                name: "Development",
-                color: "#E5CB9F"
-            },
-            time: "07:00"
-        } 
-    ]
+    const { user } = useContext(AuthUserContext)
+    
+    const [data, setData] = useState([])
+
+
+    const timeReadable = (timestamp) => {
+
+        // Total of minute between both time
+        let minutes = (timestamp/1000)/60
+
+        // Number of hour (Rounded)
+        let hours = Math.floor(minutes / 60)
+
+        // Calcul the number of minutes from the hours
+        let minutesFormated = Math.floor(minutes - (hours * 60))
+
+
+        // Formated Time (=> hours:minutes -> 00:00)
+        let formatedHours = String(hours).length == 1 ? `0${hours}` : hours
+        let formatedMinute = String(minutesFormated).length == 1 ? `0${minutesFormated}` : minutesFormated
+        
+        return formatedHours + ":" + formatedMinute
+
+    }
+
+
+    useEffect(() => {
+
+        getData()
+        
+    }, [])
+
+    async function getData() {
+
+        // Create Collection reference
+        const activitiesRef = collection(db, "activities");
+    
+        // Create a query against the collection.
+        const q = query(activitiesRef, where("userId", "==", user.uid));
+        
+        // Execute the request (=> return an array of document reference)
+        const querySnapshot = await getDocs(q)
+        
+        // Boucle on each document (=> wait the result of the query)
+        querySnapshot.forEach(async document => {
+            
+            const doc = document.data()
+
+            const categoryRef = await getDoc(doc.categoryId)
+
+            console.log(categoryRef.data().name);
+
+            // Update State
+            setData(arr => [...arr , {name: doc.name, time: timeReadable(doc.time), category: {name: categoryRef.data().name, color: categoryRef.data().color} }])
+
+        })
+        
+    }
 
 
   return (

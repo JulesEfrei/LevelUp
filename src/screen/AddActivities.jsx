@@ -75,8 +75,6 @@ export default function AddActivities() {
                 timer: category.content.timer
             }).then((res) => {
 
-                console.log("Category Created !");
-                console.log("ID == " + res.id);
                 createActivities(res.id)
 
             }).catch(err => console.log(err));
@@ -86,14 +84,13 @@ export default function AddActivities() {
 
     async function createActivities(categoryId = category.id) {
 
-        console.log(category);
-
         try{
             await addDoc(collection(db, "activities"), {
                 name: name,
                 categoryId: doc(db, 'category', categoryId),
                 time: time,
-                createdAt: serverTimestamp()
+                createdAt: serverTimestamp(),
+                userId: category.content.userId
             })
             console.log("Data Submited")
         } catch (err) {

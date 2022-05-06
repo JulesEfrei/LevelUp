@@ -78,8 +78,6 @@ export default function Selector({state}) {
             })
 
         } else {
-
-            console.log(`Updated categories ! ( ${inputValue} Added )`)
             
             state({
                 new: true,

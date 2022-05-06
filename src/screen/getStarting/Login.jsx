@@ -14,7 +14,6 @@ export default function Login() {
     const navigation = useNavigation()
     const title = "Get starting,"
     const subTitle = "by login you with a Google account"
-    
 
     return (
 
@@ -35,9 +34,9 @@ export default function Login() {
                         <CustomText content="Login with Email" style={{ color: "white" }} />
                     )} />
 
-                    <CustomButton type="custom" onPress={() => console.log("SignIn with Google") } style={[styles.button, { marginBottom: 20 }]} data={(
+                    {/* <CustomButton type="custom" onPress={() => SignInWithGoogle() } style={[styles.button, { marginBottom: 20 }]} data={(
                         <CustomText content="Login with Google" style={{ color: "white" }} />
-                    )} />
+                    )} /> */}
 
                     <CustomButton type="text" onPress={() => navigation.push("SignUpWithEmail") } data={{ content: "Create an account" }} textStyle={styles.register}/>
 

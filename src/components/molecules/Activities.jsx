@@ -10,10 +10,10 @@ export default function Activities({ data }) {
             <View style={styles.left}>
                 <CustomText content={data.name} style={styles.name} />
                 <View style={styles.categoryContainer}>
-                    <View style={[styles.category, { borderColor: data.category.color }]}>
+                    <View style={[styles.category, { borderColor: data.category.color != undefined ? data.category.color : "#789AAA"  }]}>
                         <CustomText content={data.category.name} />
                     </View>
-                    <View style={[styles.badge, { backgroundColor: data.category.color }]}></View>
+                    <View style={[styles.badge, { backgroundColor: data.category.color ? data.category.color : "#789AAA" }]}></View>
                 </View>
             </View>
 
