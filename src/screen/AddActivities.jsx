@@ -12,6 +12,9 @@ import TimerInput from '../components/molecules/TimeInput'
 import { Toast } from 'react-native-toast-message/lib/src/Toast'
 import { useState } from 'react/cjs/react.development'
 
+import { addDoc, collection } from '@firebase/firestore';
+import { db } from '../../config/firebase';
+
 export default function AddActivities() {
 
     const [name, setName] = useState("")
@@ -34,9 +37,10 @@ export default function AddActivities() {
             console.log(`Category name : ${category.name}`)
             console.log(`Time : ${time}`)
 
-            if(category.level == 0) {
+            if(category.new) {
 
                 // Create new category in the database (=> function)
+                createCategory(category)
 
             } else {
 
@@ -45,6 +49,22 @@ export default function AddActivities() {
 
             }
 
+        }
+
+    }
+
+    async function createCategory(category) {
+
+        try{
+            console.log("Data Submited")
+            await addDoc(collection(db, "category"), {
+                name: category.name,
+                userId: category.userUid,
+                level: category.level,
+                timer: category.timer
+            })
+        } catch (err) {
+            console.log(err)
         }
 
     }

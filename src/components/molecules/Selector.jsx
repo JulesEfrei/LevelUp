@@ -62,10 +62,11 @@ export default function Selector({state}) {
             console.log(`Updated categories ! ( ${inputValue} Added )`)
             
             state({
+                new: true,
                 name: inputValue,
                 userUid: user.uid,
                 level: 0,
-                timer: "00:00"
+                timer: 0
             })
 
             toggle()

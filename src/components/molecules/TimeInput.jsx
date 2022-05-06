@@ -8,12 +8,10 @@ export default function TimerInput({setTime}) {
     const [start, setStart] = useState(new Date());
     const [end, setEnd] = useState(new Date());
 
-    useEffect(() => {
-
-        // console.log(start.toLocaleTimeString(), " ", end.toLocaleTimeString())
+    const timeReadable = (timestamp) => {
 
         // Total of minute between both time
-        let minutes = (end-start)/1000/60
+        let minutes = (timestamp/1000)/60
 
         // Number of hour (Rounded)
         let hours = Math.floor(minutes / 60)
@@ -25,10 +23,17 @@ export default function TimerInput({setTime}) {
         // Formated Time (=> hours:minutes -> 00:00)
         let formatedHours = String(hours).length == 1 ? `0${hours}` : hours
         let formatedMinute = String(minutesFormated).length == 1 ? `0${minutesFormated}` : minutesFormated
-        let formatedTime = formatedHours + ":" + formatedMinute
+        
+        return formatedHours + ":" + formatedMinute
 
+    }
 
-        setTime(formatedTime)
+    useEffect(() => {
+
+        // console.log(start.toLocaleTimeString(), " ", end.toLocaleTimeString())
+
+        setTime(end - start)
+
 
     }, [start, end])
 
