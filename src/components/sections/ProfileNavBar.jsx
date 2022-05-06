@@ -3,15 +3,15 @@ import React from 'react'
 import Icon from "../atoms/Icon"
 import Logo from '../atoms/Logo'
 
-import { signOut, getAuth } from "firebase/auth"
-import { Firebase } from '../../../config/firebase';
+import { signOut } from "firebase/auth"
+import { auth } from '../../../config/firebase';
 
 
 const ProfileNavBar = () => {
 
     const logOut = async () => {
         try {
-            await signOut(getAuth(Firebase));
+            await signOut(auth);
           } catch (error) {
             console.log(error);
           }

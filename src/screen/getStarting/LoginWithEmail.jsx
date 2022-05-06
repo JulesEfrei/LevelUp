@@ -10,8 +10,8 @@ import CustomButton from "../../components/atoms/CustomButton"
 import CustomInput from "../../components/atoms/CustomInput"
 import Icon from '../../components/atoms/Icon'
 
-import {signInWithEmailAndPassword, getAuth, createUserWithEmailAndPassword } from 'firebase/auth' 
-import { firebaseConfig, Firebase } from '../../../config/firebase';
+import {signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth' 
+import { auth } from '../../../config/firebase';
 
 import Toast from 'react-native-toast-message';
 import { NavigationContainer } from '@react-navigation/native'
@@ -37,7 +37,7 @@ export default function LoginWithEmail({type}) {
         } else {
 
             try {
-                await signInWithEmailAndPassword(getAuth(Firebase), email, password);
+                await signInWithEmailAndPassword(auth, email, password);
             } catch (err) {
                 console.log("There is something wrong!", err.message);
     
@@ -62,7 +62,7 @@ export default function LoginWithEmail({type}) {
         } else {
 
             try {
-                await createUserWithEmailAndPassword(getAuth(Firebase), email, password)
+                await createUserWithEmailAndPassword(auth, email, password)
             } catch(err) {
                 popup(err.message)
             }

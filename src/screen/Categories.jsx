@@ -2,18 +2,20 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-import { Firebase } from '../../config/firebase'
-import { doc, setDoc, getFirestore } from "firebase/firestore"; 
 
-const db = getFirestore(Firebase)
+import { addDoc, collection } from '@firebase/firestore';
+import { db } from '../../config/firebase';
+
 
 export default function Categories() {
 
 
     function addData() {
 
+        console.log("AddData function...")
 
-        setDoc(doc(db, "notess", "LA"), {
+
+        addDoc(collection(db, "notess"), {
             name: "Los Angeles",
           }).then(() => {
               console.log("Submited")
