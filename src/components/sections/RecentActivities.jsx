@@ -51,7 +51,7 @@ export default function RecentActivities() {
         const activitiesRef = collection(db, "activities");
     
         // Create a query against the collection.
-        const q = query(activitiesRef, where("userId", "==", user.uid), orderBy("createdAt"), limit(10));
+        const q = query(activitiesRef, where("userId", "==", user.uid), orderBy("createdAt", "desc"), limit(10));
         
         // Execute the request (=> return an array of document reference)
         const unsusbscribe = await onSnapshot(q, (querySnapshot) => {
