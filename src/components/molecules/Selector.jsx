@@ -8,6 +8,9 @@ import Icon from '../atoms/Icon'
 import Toast from 'react-native-toast-message';
 import { AuthUserContext } from '../../utils/context'
 
+import { getDocs, collection } from '@firebase/firestore';
+import { db } from '../../../config/firebase'
+
 
 export default function Selector({state}) {
 
@@ -16,8 +19,24 @@ export default function Selector({state}) {
     const [selected, setSelected] = useState("Category Name")
     const [inputValue, setInputValue] = useState("")
     const [outputList, setOutputList] = useState([])
+    const [category, setCategory] = useState([])
 
     const { user } = useContext(AuthUserContext)
+
+    useEffect(async () => {
+      
+        const querySnapshot = await getDocs(collection(db, "category"));
+        const arr = []
+        querySnapshot.forEach((doc) => {
+
+            arr.push({id: doc.id, content: doc.data()})
+        
+        });
+
+        setCategory(arr)
+
+    }, [])
+    
 
     const toggle = () => {
 
@@ -39,13 +58,16 @@ export default function Selector({state}) {
 
     useEffect(() => {
 
+        console.log(category)
+
         if(inputValue.length != 0) {
-            setOutputList(data.filter(elm => elm.slice(0, inputValue.length) == inputValue).slice(0, 2))
+            setOutputList(category.filter(elm => elm.content.name.slice(0, inputValue.length) == inputValue).slice(0, 2))
         } else {
-            setOutputList(data.slice(0, 2))
+            setOutputList(category.slice(0, 2))
         }
 
     }, [inputValue])
+
 
     const newCategory = () => {
 
@@ -75,18 +97,6 @@ export default function Selector({state}) {
 
     }
 
-    
-
-    const data = [
-        "Work",
-        "Games",
-        "Dev",
-        "Study",
-        "Stuvne",
-        "Sgve",
-        "Metting"
-    ]
-
     return (
 
         <>
@@ -108,8 +118,8 @@ export default function Selector({state}) {
                     <View style={styles.list}>
 
                         {outputList.map((elm, index) => (
-                            <TouchableOpacity style={styles.item} onPress={() => select(elm)} key={index, "-", index}>
-                                <CustomText content={elm} />
+                            <TouchableOpacity style={styles.item} onPress={() => select(elm.content.name)} key={index, "-", index}>
+                                <CustomText content={elm.content.name} />
                             </TouchableOpacity>
                         ))}
 
