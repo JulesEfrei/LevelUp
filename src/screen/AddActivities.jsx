@@ -12,14 +12,20 @@ import TimerInput from '../components/molecules/TimeInput'
 import { Toast } from 'react-native-toast-message/lib/src/Toast'
 import { useState } from 'react/cjs/react.development'
 
-import { addDoc, collection, doc } from '@firebase/firestore';
+import { addDoc, collection, doc, serverTimestamp } from '@firebase/firestore';
 import { db } from '../../config/firebase';
+import { ref } from '@firebase/database'
+import { useNavigation } from '@react-navigation/core'
+
 
 export default function AddActivities() {
-
+    
     const [name, setName] = useState("")
     const [category, setCategory] = useState({})
     const [time, setTime] = useState(0)
+    
+    const navigation = useNavigation()
+
 
     function verify() {
 
@@ -55,34 +61,41 @@ export default function AddActivities() {
 
         }
 
-    }
-
-    async function createCategory() {
-
-        try{
-            console.log("Data Submited")
-            await addDoc(collection(db, "category"), {
-                name: category.name,
-                userId: doc(db, 'users/', category.userUid),
-                level: category.level,
-                timer: category.timer
-            })
-        } catch (err) {
-            console.log(err)
-        }
+        navigation.navigate('Home')
 
     }
 
-    async function createActivities() {
+    function createCategory() {
+
+            
+            const docRef = addDoc(collection(db, "category"), {
+                name: category.content.name,
+                userId: category.content.userId,
+                level: category.content.level,
+                timer: category.content.timer
+            }).then((res) => {
+
+                console.log("Category Created !");
+                console.log("ID == " + res.id);
+                createActivities(res.id)
+
+            }).catch(err => console.log(err));
+
+
+    }
+
+    async function createActivities(categoryId = category.id) {
+
+        console.log(category);
 
         try{
-            console.log("Data Submited")
             await addDoc(collection(db, "activities"), {
                 name: name,
-                categoryId: doc(db, 'category', category.id),
+                categoryId: doc(db, 'category', categoryId),
                 time: time,
-                createdAt: Date.now()
+                createdAt: serverTimestamp()
             })
+            console.log("Data Submited")
         } catch (err) {
             console.log(err)
         }

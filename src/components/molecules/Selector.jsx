@@ -83,10 +83,12 @@ export default function Selector({state}) {
             
             state({
                 new: true,
-                name: inputValue,
-                userUid: user.uid,
-                level: 0,
-                timer: 0
+                content: {
+                    name: inputValue,
+                    userId: user.uid,
+                    level: 0,
+                    timer: 0
+                }
             })
 
             toggle()
