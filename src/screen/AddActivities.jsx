@@ -12,14 +12,14 @@ import TimerInput from '../components/molecules/TimeInput'
 import { Toast } from 'react-native-toast-message/lib/src/Toast'
 import { useState } from 'react/cjs/react.development'
 
-import { addDoc, collection } from '@firebase/firestore';
+import { addDoc, collection, doc } from '@firebase/firestore';
 import { db } from '../../config/firebase';
 
 export default function AddActivities() {
 
     const [name, setName] = useState("")
     const [category, setCategory] = useState({})
-    const [time, setTime] = useState("00:00")
+    const [time, setTime] = useState(0)
 
     function verify() {
 
@@ -34,18 +34,22 @@ export default function AddActivities() {
         } else {
 
             console.log(`Name : ${name}`)
-            console.log(`Category name : ${category.name}`)
+            console.log(`Category name : ${category.content.name}`)
+            console.log(`Category id : ${category.id}`)
+            console.log(`Category Timer : ${category.content.timer}`)
+            console.log(`Category Level : ${category.content.level}`)
+            console.log(`Category UserId : ${category.content.userId}`)
             console.log(`Time : ${time}`)
 
             if(category.new) {
 
                 // Create new category in the database (=> function)
-                createCategory(category)
+                createCategory()
 
             } else {
 
-                // Get category from database
-                //Create activiti in the database
+                //Create activitie in the database
+                createActivities()
 
             }
 
@@ -53,15 +57,31 @@ export default function AddActivities() {
 
     }
 
-    async function createCategory(category) {
+    async function createCategory() {
 
         try{
             console.log("Data Submited")
             await addDoc(collection(db, "category"), {
                 name: category.name,
-                userId: category.userUid,
+                userId: doc(db, 'users/', category.userUid),
                 level: category.level,
                 timer: category.timer
+            })
+        } catch (err) {
+            console.log(err)
+        }
+
+    }
+
+    async function createActivities() {
+
+        try{
+            console.log("Data Submited")
+            await addDoc(collection(db, "activities"), {
+                name: name,
+                categoryId: doc(db, 'category', category.id),
+                time: time,
+                createdAt: Date.now()
             })
         } catch (err) {
             console.log(err)

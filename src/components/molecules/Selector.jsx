@@ -50,15 +50,13 @@ export default function Selector({state}) {
 
     }
 
-    const select = (category) => {
-        state({name: category})
-        setSelected(category)
+    const select = (cate) => {
+        state(cate)
+        setSelected(cate.content.name)
         toggle()
     }
 
     useEffect(() => {
-
-        console.log(category)
 
         if(inputValue.length != 0) {
             setOutputList(category.filter(elm => elm.content.name.slice(0, inputValue.length) == inputValue).slice(0, 2))
@@ -118,7 +116,7 @@ export default function Selector({state}) {
                     <View style={styles.list}>
 
                         {outputList.map((elm, index) => (
-                            <TouchableOpacity style={styles.item} onPress={() => select(elm.content.name)} key={index, "-", index}>
+                            <TouchableOpacity style={styles.item} onPress={() => select(elm)} key={index, "-", index}>
                                 <CustomText content={elm.content.name} />
                             </TouchableOpacity>
                         ))}

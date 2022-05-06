@@ -82,8 +82,8 @@ export default function RecentActivities() {
         <View style={styles.listContianer}>
 
 
-            {data.map(elm => (
-                <Activities data={elm} />
+            {data.map((elm, index) => (
+                <Activities data={elm} key={`${elm.category.name}-${index}`} />
             ))}
 
 
