@@ -28,14 +28,12 @@ export default function Selector({state}) {
         const q = query(collection(db, "category"), where("userId", "==", user.uid));
       
         const querySnapshot = await getDocs(q);
-        const arr = []
         querySnapshot.forEach((doc) => {
 
-            arr.push({id: doc.id, content: doc.data()})
-        
+            setCategory(arr => [...arr, {id: doc.id, content: doc.data()}])
+            setOutputList(arr => [...arr, {id: doc.id, content: doc.data()}].slice(0, 2))
+            
         });
-
-        setCategory(arr)
 
     }, [])
     
