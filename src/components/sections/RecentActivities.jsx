@@ -6,7 +6,7 @@ import Activities from '../molecules/Activities'
 import { useState } from 'react/cjs/react.development'
 import { useEffect } from 'react'
 
-import { collection, query, where, getDocs, getDoc } from "firebase/firestore";
+import { collection, query, where, orderBy, limit, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../../../config/firebase"
 import { AuthUserContext } from '../../utils/context'
 
@@ -46,28 +46,39 @@ export default function RecentActivities() {
 
     async function getData() {
 
+
         // Create Collection reference
         const activitiesRef = collection(db, "activities");
     
         // Create a query against the collection.
-        const q = query(activitiesRef, where("userId", "==", user.uid));
+        const q = query(activitiesRef, where("userId", "==", user.uid), orderBy("createdAt"), limit(10));
         
         // Execute the request (=> return an array of document reference)
-        const querySnapshot = await getDocs(q)
-        
-        // Boucle on each document (=> wait the result of the query)
-        querySnapshot.forEach(async document => {
-            
-            const doc = document.data()
+        const unsusbscribe = await onSnapshot(q, (querySnapshot) => {
 
-            const categoryRef = await getDoc(doc.categoryId)
+            //Reset state
+            setData([])
 
-            console.log(categoryRef.data().name);
+            // Boucle on each document (=> wait the result of the query)
+            querySnapshot.forEach(async document => {
+                
+                const doc = document.data()
+    
+                const categoryRef = await getDoc(doc.categoryId)
+    
+                console.log(categoryRef.data().name);
+    
+                
+                if(!data.find(elm => elm.id == doc.id)) {
 
-            // Update State
-            setData(arr => [...arr , {name: doc.name, time: timeReadable(doc.time), category: {name: categoryRef.data().name, color: categoryRef.data().color} }])
+                    // Update State
+                    setData(arr => [...arr , {name: doc.name, time: timeReadable(doc.time), category: {name: categoryRef.data().name, color: categoryRef.data().color} }])
+                }
+    
+            })
 
         })
+        
         
     }
 
