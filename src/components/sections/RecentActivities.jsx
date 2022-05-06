@@ -88,10 +88,10 @@ export default function RecentActivities() {
       
         <Title content="Recent Activities :" />
 
-        <View style={styles.listContianer}>
+        <View style={[styles.listContianer, data.length == 0 && styles.center]}>
 
 
-            {data.map((elm, index) => (
+            {data.length == 0 ? <Text style={styles.no}>You have no activities</Text> : data.map((elm, index) => (
                 <Activities data={elm} key={`${elm.category.name}-${index}`} />
             ))}
 
@@ -112,7 +112,16 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         marginTop: 25
     },
+    center: {
+        display: 'flex',
+        alignItems: "center",
+        justifyContent: "center",
+        height: 300
+    },  
     listContianer: {
         marginTop: 20
+    },
+    no: {
+        color: "#789AAA",
     }
 })

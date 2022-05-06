@@ -8,7 +8,7 @@ import Icon from '../atoms/Icon'
 import Toast from 'react-native-toast-message';
 import { AuthUserContext } from '../../utils/context'
 
-import { getDocs, collection } from '@firebase/firestore';
+import { getDocs, collection, query, where } from '@firebase/firestore';
 import { db } from '../../../config/firebase'
 
 
@@ -24,8 +24,10 @@ export default function Selector({state}) {
     const { user } = useContext(AuthUserContext)
 
     useEffect(async () => {
+
+        const q = query(collection(db, "category"), where("userId", "==", user.uid));
       
-        const querySnapshot = await getDocs(collection(db, "category"));
+        const querySnapshot = await getDocs(q);
         const arr = []
         querySnapshot.forEach((doc) => {
 
