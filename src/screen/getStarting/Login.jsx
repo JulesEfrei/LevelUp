@@ -31,7 +31,7 @@ export default function Login() {
                 <View style={styles.buttonContainer}>
                     
                     <CustomButton type="custom" onPress={() => navigation.push('SignInWithEmail') } style={[styles.button, { marginBottom: 20 }]} data={(
-                        <CustomText content="Login with Email" style={{ color: "white" }} />
+                        <CustomText content="Login with Email" align="center" style={{ color: "white" }} />
                     )} />
 
                     {/* <CustomButton type="custom" onPress={() => SignInWithGoogle() } style={[styles.button, { marginBottom: 20 }]} data={(
