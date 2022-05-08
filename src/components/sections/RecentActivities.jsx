@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useContext } from 'react'
 
 import Title from '../atoms/Title'
-import Activities from '../molecules/Activities'
+import Card from "../molecules/Card"
 import { useState } from 'react/cjs/react.development'
 import { useEffect } from 'react'
 
@@ -92,7 +92,7 @@ export default function RecentActivities() {
 
 
             {data.length == 0 ? <Text style={styles.no}>You have no activities</Text> : data.map((elm, index) => (
-                <Activities data={elm} key={`${elm.category.name}-${index}`} />
+                <Card content={elm} type="activities" key={`${elm.category.name}-${index}`} />
             ))}
 
 
