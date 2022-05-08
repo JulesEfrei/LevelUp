@@ -15,34 +15,8 @@ export default function RecentActivities() {
     const { user } = useContext(AuthUserContext)
     
     const [data, setData] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
-
-    const timeReadable = (timestamp) => {
-
-        // Total of minute between both time
-        let minutes = (timestamp/1000)/60
-
-        // Number of hour (Rounded)
-        let hours = Math.floor(minutes / 60)
-
-        // Calcul the number of minutes from the hours
-        let minutesFormated = Math.floor(minutes - (hours * 60))
-
-
-        // Formated Time (=> hours:minutes -> 00:00)
-        let formatedHours = String(hours).length == 1 ? `0${hours}` : hours
-        let formatedMinute = String(minutesFormated).length == 1 ? `0${minutesFormated}` : minutesFormated
-        
-        return formatedHours + ":" + formatedMinute
-
-    }
-
-
-    useEffect(() => {
-
-        getData()
-        
-    }, [])
 
     async function getData() {
 
@@ -66,21 +40,64 @@ export default function RecentActivities() {
     
                 const categoryRef = await getDoc(doc.categoryId)
     
-                console.log(categoryRef.data().name);
-    
+                // Update State
+                setData(arr => [...arr , {name: doc.name, time: timeReadable(doc.time), category: {name: categoryRef.data().name, color: categoryRef.data().color}}])
                 
-                if(!data.find(elm => elm.id == doc.id)) {
 
-                    // Update State
-                    setData(arr => [...arr , {name: doc.name, time: timeReadable(doc.time), category: {name: categoryRef.data().name, color: categoryRef.data().color} }])
-                }
-    
             })
 
         })
         
         
     }
+
+
+    useEffect(() => {
+
+        getData()
+        
+    }, [])
+
+    useEffect(() => {
+      
+        setIsLoading(false)
+  
+      }, [data])
+
+    const timeReadable = (timestamp) => {
+    
+        // Total of minute between both time
+        let minutes = (timestamp/1000)/60
+
+        // Number of hour (Rounded)
+        let hours = Math.floor(minutes / 60)
+
+        // Calcul the number of minutes from the hours
+        let minutesFormated = Math.floor(minutes - (hours * 60))
+
+        // Formated Time (=> hours:minutes -> 00:00)
+        let formatedHours = String(hours).length == 1 ? `0${hours}` : hours
+        let formatedMinute = String(minutesFormated).length == 1 ? `0${minutesFormated}` : minutesFormated
+
+
+        return formatedHours + ":" + formatedMinute
+
+    }
+
+
+    function condition() {
+
+        if(data.length == 0) {
+    
+          return (<Text style={styles.no}>You have no activities</Text>)
+    
+        } else {
+          return (isLoading == false && [...new Set(data)].map((elm, index) => (
+            <Card content={elm} type="activities" key={`${elm.category.name}-${index}`} />
+          )))
+        }
+    
+      }
 
 
   return (
@@ -91,9 +108,7 @@ export default function RecentActivities() {
         <View style={[styles.listContianer, data.length == 0 && styles.center]}>
 
 
-            {data.length == 0 ? <Text style={styles.no}>You have no activities</Text> : data.map((elm, index) => (
-                <Card content={elm} type="activities" key={`${elm.category.name}-${index}`} />
-            ))}
+            { isLoading ? <Text>Loading...</Text> : condition() }
 
 
         </View>

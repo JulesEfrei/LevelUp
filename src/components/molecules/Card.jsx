@@ -44,12 +44,19 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         borderRadius: 5,
         marginBottom: 20,
-        // padding: 10,
         display: 'flex',
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        overflow: "hidden"
+        overflow: "hidden",
+        shadowColor: "#000",
+        shadowOffset: {
+        	width: 0,
+        	height: 3,
+        },
+        shadowOpacity: 0.27,
+        shadowRadius: 4.65,
+        elevation: 6,
     },
     box: {
         position: "absolute",

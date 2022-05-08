@@ -44,7 +44,15 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 15,
         display: "flex",
-        alignItems: "center"
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+        	width: 0,
+        	height: 3,
+        },
+        shadowOpacity: 0.27,
+        shadowRadius: 4.65,
+        elevation: 6,
     },
     author: {
         marginTop: 10 

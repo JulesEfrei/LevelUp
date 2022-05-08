@@ -10,7 +10,6 @@ import Selector from "../components/molecules/Selector"
 import TimeInput from "../components/molecules/TimeInput"
 import TimerInput from '../components/molecules/TimeInput'
 import { Toast } from 'react-native-toast-message/lib/src/Toast'
-// import { useState } from 'react/cjs/react.development'
 import { useCallback, useState } from 'react'
 
 import { addDoc, collection, doc, increment, serverTimestamp, updateDoc } from '@firebase/firestore';
@@ -86,6 +85,7 @@ export default function AddActivities() {
             }).then((res) => {
 
                 createActivities(res.id)
+                // console.log(res.id);
 
             }).catch(err => console.log(err));
 
