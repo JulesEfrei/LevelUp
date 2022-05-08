@@ -1,12 +1,14 @@
 import DataPicker from "../atoms/DatePicker"
 import CustomText from "../atoms/CustomText"
 import { StyleSheet, View } from "react-native"
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useIsFocused } from '@react-navigation/native'
 
 export default function TimerInput({setTime}) {
 
     const [start, setStart] = useState(new Date());
     const [end, setEnd] = useState(new Date());
+    const mounted = useRef(false)
 
     const timeReadable = (timestamp) => {
 
@@ -36,6 +38,15 @@ export default function TimerInput({setTime}) {
 
 
     }, [start, end])
+
+
+    const isFocused = useIsFocused()
+
+    useEffect(() => {
+        console.log("Re-Build");
+        setStart(new Date())
+        setEnd(new Date())
+    }, [isFocused])
 
     return (
 

@@ -26,9 +26,6 @@ export default function AddActivities() {
     
     const navigation = useNavigation()
 
-    const [s, updateState] = useState(0);
-    const forceUpdate = useCallback(() => updateState(s+1), []);
-
 
     function verify() {
 
@@ -67,7 +64,6 @@ export default function AddActivities() {
             setCategory({})
             setTime(0)
             navigation.navigate('Home')
-            forceUpdate()
         }
 
 
@@ -84,8 +80,8 @@ export default function AddActivities() {
                 color: randomColor()
             }).then((res) => {
 
+                //Here is the Issue #7
                 createActivities(res.id)
-                // console.log(res.id);
 
             }).catch(err => console.log(err));
 
@@ -147,7 +143,7 @@ export default function AddActivities() {
 
                 <View style={styles.inputContainer}>
                     <Title content="Name" style={styles.title} />
-                    <CustomInput type="text" content="What did you do ?" state={setName} />
+                    <CustomInput type="text" content="What did you do ?" state={setName} value={name} />
                 </View>
 
                 <View style={[styles.inputContainer, styles.selector]}>
@@ -157,7 +153,7 @@ export default function AddActivities() {
 
                 <View style={styles.inputContainer}>
                     <Title content="Time" style={styles.title} />
-                    <TimerInput state={setName} setTime={setTime} />
+                    <TimerInput state={setName} setTime={setTime}/>
                 </View>
 
                 <View>

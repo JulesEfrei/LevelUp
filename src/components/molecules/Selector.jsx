@@ -4,6 +4,7 @@ import { useState } from 'react/cjs/react.development'
 import CustomInput from "../atoms/CustomInput"
 import CustomText from "../atoms/CustomText"
 import Icon from '../atoms/Icon'
+import { useIsFocused } from '@react-navigation/native'
 
 import Toast from 'react-native-toast-message';
 import { AuthUserContext } from '../../utils/context'
@@ -36,6 +37,13 @@ export default function Selector({state, value}) {
         });
 
     }, [])
+
+    const isFocused = useIsFocused()
+
+    useEffect(() => {
+        console.log("Re-Build");
+        setSelected("Category Name")
+    }, [isFocused])
     
 
     const toggle = () => {
