@@ -5,10 +5,20 @@ import CustomText from "../atoms/CustomText"
 
 export default function Card({ content, type }) {
 
+    function colorCondition() {
+
+        if(type == "categories") {
+            return content.color != undefined ? content.color : "#789AAA"
+        } else {
+            return content.category.color != undefined ? content.category.color : "#789AAA"
+        }
+
+    }
+
   return (
     <TouchableOpacity style={styles.container}>
 
-        <View style={[styles.box, {backgroundColor: content.color != undefined ? content.color : "#789AAA"}]}></View>
+        <View style={[styles.box, {backgroundColor: colorCondition() }]}></View>
       
 
         <View style={styles.left}>

@@ -10,7 +10,8 @@ import Selector from "../components/molecules/Selector"
 import TimeInput from "../components/molecules/TimeInput"
 import TimerInput from '../components/molecules/TimeInput'
 import { Toast } from 'react-native-toast-message/lib/src/Toast'
-import { useState } from 'react/cjs/react.development'
+// import { useState } from 'react/cjs/react.development'
+import { useCallback, useState } from 'react'
 
 import { addDoc, collection, doc, increment, serverTimestamp, updateDoc } from '@firebase/firestore';
 import { db } from '../../config/firebase';
@@ -25,6 +26,9 @@ export default function AddActivities() {
     const [time, setTime] = useState(0)
     
     const navigation = useNavigation()
+
+    const [s, updateState] = useState(0);
+    const forceUpdate = useCallback(() => updateState(s+1), []);
 
 
     function verify() {
@@ -60,7 +64,11 @@ export default function AddActivities() {
 
             }
 
+            setName("")
+            setCategory({})
+            setTime(0)
             navigation.navigate('Home')
+            forceUpdate()
         }
 
 
@@ -73,7 +81,8 @@ export default function AddActivities() {
                 name: category.content.name,
                 userId: category.content.userId,
                 level: category.content.level,
-                timer: time
+                timer: time,
+                color: randomColor()
             }).then((res) => {
 
                 createActivities(res.id)
@@ -91,7 +100,7 @@ export default function AddActivities() {
                 categoryId: doc(db, 'category', categoryId),
                 time: time,
                 createdAt: serverTimestamp(),
-                userId: category.content.userId
+                userId: category.content.userId,
             })
             console.log("Data Submited")
         } catch (err) {
@@ -108,6 +117,18 @@ export default function AddActivities() {
             console.log(err)
         }
 
+    }
+
+    function randomColor() {
+
+        return ("#" + randomBetween(16777215).toString(16))
+    
+    }
+
+    function randomBetween(max, min = 0) {
+
+        return Math.floor(Math.random() * (max - min + 1) + min)
+    
     }
 
 
@@ -131,7 +152,7 @@ export default function AddActivities() {
 
                 <View style={[styles.inputContainer, styles.selector]}>
                     <Title content="Category" style={styles.title} />
-                    <Selector state={setCategory} />
+                    <Selector state={setCategory} value={category.name} />
                 </View>
 
                 <View style={styles.inputContainer}>

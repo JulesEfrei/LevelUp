@@ -3,7 +3,7 @@ import { StyleSheet, TextInput, TouchableOpacity, View, Button, Text } from "rea
 
 import Icon from "./Icon"
 
-export default function CustomInput({content, type, style = {}, state}) {
+export default function CustomInput({content, type, style = {}, state, value}) {
 
     const [isHide, setIsHide] = useState(true)
 
@@ -13,7 +13,7 @@ export default function CustomInput({content, type, style = {}, state}) {
 
         <View style={[style, styles.container]}>
 
-            {type == "text" && <TextInput placeholder={content} keyboardType="default" onChangeText={(e) => state(e)} />}
+            {type == "text" && <TextInput placeholder={content} keyboardType="default" onChangeText={(e) => state(e)} value={value} />}
 
             {type == "email" && <TextInput placeholder={content} keyboardType="email-address" onChangeText={(e) => state(e)} autoCapitalize='none' />}
 

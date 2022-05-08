@@ -12,7 +12,7 @@ import { getDocs, collection, query, where } from '@firebase/firestore';
 import { db } from '../../../config/firebase'
 
 
-export default function Selector({state}) {
+export default function Selector({state, value}) {
 
     const [show, setShow] = useState(false)
     const [arrow, setArrow] = useState("down")
