@@ -83,6 +83,20 @@ export default function Categories() {
 
   }
 
+  function condition() {
+
+    if(category.length == 0) {
+
+      return (<Text style={styles.no}>You have no categories</Text>)
+
+    } else {
+      return (isLoading == false && category.map((elm, index) => (
+        <Card content={elm} type='categories' key={`${elm.name}-${index}`} />
+      )))
+    }
+
+  }
+
   return (
     <SafeAreaView>
 
@@ -97,11 +111,9 @@ export default function Categories() {
             <Title content="Categories" />
           </View>
     
-          <View style={styles.list}>
+          <View style={[styles.list, category.length == 0 && styles.center]}>
     
-            {isLoading == false && category.map((elm, index) => (
-              <Card content={elm} type='categories' key={`${elm.name}-${index}`} />
-            ))}
+            { isLoading ? <Text>Loading...</Text> : condition() }
   
           </View>
             
@@ -132,5 +144,15 @@ const styles = StyleSheet.create({
     borderColor: "black",
     width: 120,
     marginBottom: 30
-  }
+  },
+  center: {
+    display: 'flex',
+    alignItems: "center",
+    justifyContent: "center",
+    height: 300
+  }, 
+  no: {
+    color: "#789AAA",
+  },
+
 })
