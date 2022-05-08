@@ -29,7 +29,7 @@ export default function AddActivities() {
 
     function verify() {
 
-        if(name == "" || category == {} || Math.floor(time) == 0) {
+        if(name == "" || category == {} || Math.floor(time) <= 0) {
 
             Toast.show({
                 type: "error",
