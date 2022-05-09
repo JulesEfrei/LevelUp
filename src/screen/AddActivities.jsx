@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, Vibration, View } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -130,7 +130,7 @@ export default function AddActivities() {
 
             // Trigger notification
             if(level > currLv) (
-                sendNotification()
+                Vibration.vibrate(1000)
             )
 
             // Update
@@ -157,10 +157,6 @@ export default function AddActivities() {
 
         return Math.floor(Math.random() * (max - min + 1) + min)
     
-    }
-
-    function sendNotification() {
-        console.log("Notif");
     }
 
 
