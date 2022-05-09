@@ -12,7 +12,7 @@ import TimerInput from '../components/molecules/TimeInput'
 import { Toast } from 'react-native-toast-message/lib/src/Toast'
 import { useCallback, useState } from 'react'
 
-import { addDoc, collection, doc, increment, serverTimestamp, updateDoc } from '@firebase/firestore';
+import { addDoc, collection, doc, increment, serverTimestamp, updateDoc, getDoc } from '@firebase/firestore';
 import { db } from '../../config/firebase';
 import { ref } from '@firebase/database'
 import { useNavigation } from '@react-navigation/core'
@@ -29,6 +29,7 @@ export default function AddActivities() {
 
     function verify() {
 
+        // If form is not correct
         if(name == "" || category == {} || Math.floor(time) <= 0) {
 
             Toast.show({
@@ -38,14 +39,6 @@ export default function AddActivities() {
             })
 
         } else {
-
-            console.log(`Name : ${name}`)
-            console.log(`Category name : ${category.content.name}`)
-            console.log(`Category id : ${category.id}`)
-            console.log(`Category Timer : ${category.content.timer}`)
-            console.log(`Category Level : ${category.content.level}`)
-            console.log(`Category UserId : ${category.content.userId}`)
-            console.log(`Time : ${time}`)
 
             if(category.new) {
 
@@ -60,9 +53,15 @@ export default function AddActivities() {
 
             }
 
+            // Reset State            
             setName("")
             setCategory({})
             setTime(0)
+
+            //Update Level on category
+            updateCategoryLevel()
+
+            // Redirect on Home Page
             navigation.navigate('Home')
         }
 
@@ -115,6 +114,39 @@ export default function AddActivities() {
 
     }
 
+
+    async function updateCategoryLevel() {
+
+        try {
+            
+            // From cate.id get time 
+            const docSnap = await getDoc(doc(db, 'category', category.id))
+            const time = docSnap.data().timer
+            const currLv = docSnap.data().level
+
+
+            // Calcul (=> cateTime + actTime % 2, arrondis)
+            const level = Math.floor(Math.floor(time/1000/60/60) / 3)
+
+            // Trigger notification
+            if(level > currLv) (
+                sendNotification()
+            )
+
+            // Update
+            try{
+                await updateDoc(doc(db, 'category', category.id), { level: level })
+            } catch (err) {
+                console.log(err)
+            }
+
+        } catch (err) {
+            console.log(err);
+        }
+
+    }
+
+
     function randomColor() {
 
         return ("#" + randomBetween(16777215).toString(16))
@@ -125,6 +157,10 @@ export default function AddActivities() {
 
         return Math.floor(Math.random() * (max - min + 1) + min)
     
+    }
+
+    function sendNotification() {
+        console.log("Notif");
     }
 
 
