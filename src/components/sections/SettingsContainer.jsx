@@ -7,6 +7,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import CustomText from'../atoms/CustomText'
 import Icon from '../atoms/Icon'
 import ToggleButton from '../atoms/ToggleButton'
+import OpenURLButton from '../atoms/OpenURLButton'
 
 export default function SettingsContainer() {
 
@@ -36,7 +37,7 @@ export default function SettingsContainer() {
           <View style={[styles.icon, { backgroundColor: "#FF6839" }]}>
             <Icon.Ionicons name="bug-outline" size={20} />
           </View>
-            <CustomText size={18} content="Report Bug"  style={styles.title} />
+            <OpenURLButton style={styles.title} url="https://level-up-skills.netlify.app/#contact">Repport Bug</OpenURLButton>
           </View>
 
           <Icon.Entypo name="link" size={20} />
@@ -49,7 +50,7 @@ export default function SettingsContainer() {
             <View style={[styles.icon, { backgroundColor: "#ffbd73" }]}>
               <Icon.Ionicons name="help-circle-outline" size={20} />
             </View>
-            <CustomText size={18} content="Need help"  style={styles.title} />
+            <OpenURLButton style={styles.title} url="https://level-up-skills.netlify.app/">Need Help</OpenURLButton>
           </View>
 
           <Icon.Entypo name="link" size={20} />
@@ -80,7 +81,8 @@ const styles = StyleSheet.create({
     marginRight: 25
   },
   title: {
-    fontWeight: "bold"
+    fontWeight: "bold",
+    fontSize: 18,
   },
   settingContainerLeft: {
     width: "60%",
