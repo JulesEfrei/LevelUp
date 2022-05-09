@@ -9,7 +9,7 @@ import { useIsFocused } from '@react-navigation/native'
 import Toast from 'react-native-toast-message';
 import { AuthUserContext } from '../../utils/context'
 
-import { getDocs, collection, query, where } from '@firebase/firestore';
+import { getDocs, collection, query, where, onSnapshot } from '@firebase/firestore';
 import { db } from '../../../config/firebase'
 
 
@@ -28,12 +28,15 @@ export default function Selector({state, value}) {
 
         const q = query(collection(db, "category"), where("userId", "==", user.uid));
       
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
+        const unsusbscribe = await onSnapshot(q, querySnapshot => {
 
-            setCategory(arr => [...arr, {id: doc.id, content: doc.data()}])
-            setOutputList(arr => [...arr, {id: doc.id, content: doc.data()}].slice(0, 2))
-            
+            querySnapshot.forEach((doc) => {
+    
+                setCategory(arr => [...arr, {id: doc.id, content: doc.data()}])
+                setOutputList(arr => [...arr, {id: doc.id, content: doc.data()}].slice(0, 2))
+                
+            });
+
         });
 
     }, [])
