@@ -13,6 +13,7 @@ export default function HomeScreen() {
 
   const { user } = useContext(AuthUserContext);
 
+  // Get name of the user from his Email
   function displayName() {
     if(user.displayName) {
       return user.displayName  

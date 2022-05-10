@@ -13,6 +13,7 @@ export default function App() {
 
   return (
 
+    // Context Provider for authentification
     <AuthUserProvider>
     
       <NavigationContainer>

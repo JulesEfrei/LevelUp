@@ -24,6 +24,7 @@ export default function Selector({state, value}) {
 
     const { user } = useContext(AuthUserContext)
 
+    // Get all categories of the user
     useEffect(async () => {
 
         const q = query(collection(db, "category"), where("userId", "==", user.uid));
@@ -41,6 +42,8 @@ export default function Selector({state, value}) {
 
     }, [])
 
+
+    // Re-render the component when the screen is active
     const isFocused = useIsFocused()
 
     useEffect(() => {
@@ -49,6 +52,7 @@ export default function Selector({state, value}) {
     }, [isFocused])
     
 
+    // Toogle the arrow in the front-end
     const toggle = () => {
 
         setShow(!show)
@@ -61,12 +65,14 @@ export default function Selector({state, value}) {
 
     }
 
+    // Set the selected category
     const select = (cate) => {
         state(cate)
         setSelected(cate.content.name)
         toggle()
     }
 
+    // Filter the result of categories
     useEffect(() => {
 
         if(inputValue.length != 0) {
@@ -78,8 +84,10 @@ export default function Selector({state, value}) {
     }, [inputValue])
 
 
+    // Set all states for a new category
     const newCategory = () => {
 
+        // If the input is empty => error
         if(inputValue.length == 0) {
 
             Toast.show({

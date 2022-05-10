@@ -40,6 +40,7 @@ export default function TimerInput({setTime}) {
     }, [start, end])
 
 
+    // Re-render the component when the screen is active
     const isFocused = useIsFocused()
 
     useEffect(() => {

@@ -13,6 +13,7 @@ export default function UserNavigation() {
     return (
 
         <Stack.Navigator initialRouteName="Welcome">
+
           <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
           <Stack.Screen name="Features" component={Features} options={{ headerShown: false }} />
           <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
@@ -22,6 +23,7 @@ export default function UserNavigation() {
           <Stack.Screen name="SignUpWithEmail" options={{ headerShown: false }}>
             {props => <LoginWithEmail {...props} type="signUp" />}
           </Stack.Screen>
+          
         </Stack.Navigator>
             
     )

@@ -34,10 +34,6 @@ export default function Login() {
                         <CustomText content="Login with Email" align="center" style={{ color: "white" }} />
                     )} />
 
-                    {/* <CustomButton type="custom" onPress={() => SignInWithGoogle() } style={[styles.button, { marginBottom: 20 }]} data={(
-                        <CustomText content="Login with Google" style={{ color: "white" }} />
-                    )} /> */}
-
                     <CustomButton type="text" onPress={() => navigation.push("SignUpWithEmail") } data={{ content: "Create an account" }} textStyle={styles.register}/>
 
                 </View>

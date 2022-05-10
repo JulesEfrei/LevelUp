@@ -24,6 +24,7 @@ export default function LoginWithEmail({type}) {
     const [password, setPassword] = useState("")
     const navigation = useNavigation()
 
+    // SignIn function
     async function signIn(email, password) {
 
         if(email == "" || password == "") {
@@ -48,9 +49,11 @@ export default function LoginWithEmail({type}) {
         }
       }
 
+    // SignUp function
     async function signUp(email, password) {
 
 
+        // If form is incorrect
         if(email == "" || password == "") {
 
             Toast.show({
@@ -70,6 +73,7 @@ export default function LoginWithEmail({type}) {
         }
       }
 
+      // Error popup function
       function popup(err) {
 
         let errorType = err.split("").slice(err.split("").findIndex(elm => elm == "/") + 1 , err.split("").findIndex(elm => elm == ")")).join("")

@@ -21,6 +21,8 @@ export default function Categories() {
     const [category, setCategory] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
+
+    // Get all categories of the user
     async function getCategories() {
 
       // Create Collection reference
@@ -50,12 +52,15 @@ export default function Categories() {
 
     }
 
+    // Get categories on load
     useEffect(() => {
       
       getCategories()  
 
     }, [])
 
+
+    //Reset the loading state
     useEffect(() => {
       
       setIsLoading(false)
@@ -63,6 +68,7 @@ export default function Categories() {
     }, [category])
     
 
+    // Formate timestamp to readable time
     const timeReadable = (timestamp) => {
 
       // Total of minute between both time
@@ -83,6 +89,8 @@ export default function Categories() {
 
   }
 
+
+  // Render the right content (In relation to the data)
   function condition() {
 
     if(category.length == 0) {
