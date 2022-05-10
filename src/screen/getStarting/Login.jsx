@@ -13,7 +13,7 @@ export default function Login() {
     
     const navigation = useNavigation()
     const title = "Get starting,"
-    const subTitle = "by login you with a Google account"
+    const subTitle = "by login you with an E-mail"
 
     return (
 

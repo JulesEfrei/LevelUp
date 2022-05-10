@@ -9,7 +9,7 @@ import { useNavigation } from "@react-navigation/core";
 export default function Features() {
 
     const title = "Stay motivated and productive !"
-    const text = "Register all your activities and won Xp for all your tasks"
+    const text = "Register all your activities and won Xp for all your tasks. With LevelUp, 3h is equal to 1 level"
 
     const navigation = useNavigation();
 
