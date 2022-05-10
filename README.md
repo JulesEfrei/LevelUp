@@ -123,8 +123,6 @@ Use this space to show useful examples of how a project can be used. Additional 
 
 
 
-For more examples, please refer to the [Documentation](https://example.com)
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
