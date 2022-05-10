@@ -118,8 +118,8 @@ To get a local copy up and running follow these simple example steps. -->
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
 **You can test the application with a demo account ->**
-    * Email = usertest1@levelup.com
-    * Password = usertest
+    - Email = usertest1@levelup.com
+    - Password = usertest
 
 
 
