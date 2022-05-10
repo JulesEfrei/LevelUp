@@ -13,7 +13,7 @@
 <br />
 <div align="center">
   
-  <img src="src/assets/logo.png" alt="Logo" width="80" height="95" />
+  <img src="assets/logo.png" alt="Logo" width="80" height="95" />
   <!-- https://drive.google.com/uc?export=view&id=      => Google drive Link -->
 
   <h2 align="center">LevelUp</h2>
@@ -63,9 +63,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 
 LevelUp's goal is to improve you. It's ambitious but we rely on all your feedback and needs to make it possible. Staying motivated and productive is quite complicated, we often get distracted or waste time on things that don't deserve it. The same is true for longer periods of time with other problems like staying motivated when our goal is far from being reached. Our goal is to increase your productivity by tracking every single activity you perform to help you identify areas for improvement. But LevelUp does not stop here, you can define your goals directly in the application and follow your progress to reach your goals whatever they are.
 
@@ -126,7 +123,7 @@ Use this space to show useful examples of how a project can be used. Additional 
 
 <!-- _For more examples, please refer to the [Documentation](https://example.com)_ -->
 
-<p align="right">(<a href="#top">back to top</a>)</p> -->
+<!-- <p align="right">(<a href="#top">back to top</a>)</p> -->
 
 
 
@@ -214,4 +211,3 @@ Distributed under the MIT License. See `LICENSE` for more information. If no lic
 [license-url]: https://github.com/JulesEfrei/LevelUp/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/jules-bruzeau/
-[product-screenshot]: images/screenshot.png
