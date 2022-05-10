@@ -13,7 +13,7 @@
 <br />
 <div align="center">
   
-  <img src="assets/logo.png" alt="Logo" width="80" height="95" />
+  <img src="assets/logo.png" alt="Logo" width="80" height="100" />
   <!-- https://drive.google.com/uc?export=view&id=      => Google drive Link -->
 
   <h2 align="center">LevelUp</h2>
