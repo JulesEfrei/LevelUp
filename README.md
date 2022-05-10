@@ -49,8 +49,8 @@
       <ul>
         <li><a href="#installation">Installation</a></li>
       </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li> -->
+    </li> -->
+    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap / Features</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -113,17 +113,19 @@ To get a local copy up and running follow these simple example steps. -->
 
 
 <!-- USAGE EXAMPLES -->
-<!-- ## Usage
+## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-1. Follow the instruction to install the application
+**You can test the application with a demo account ->**
+    * Email = usertest1@levelup.com
+    * Password = usertest
 
-2. Run the application
 
-<!-- _For more examples, please refer to the [Documentation](https://example.com)_ -->
 
-<!-- <p align="right">(<a href="#top">back to top</a>)</p> -->
+For more examples, please refer to the [Documentation](https://example.com)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 
 
